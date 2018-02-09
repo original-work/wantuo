@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="http://iwantuo.com/wantuo/lib/jquery/1.9.1/jquery.min.js"></script> 
+<style type="text/css">
+<!--
+*{ margin:0; padding:0;}
+.box{ width:100%;}
+.box img{ width:100%; height:auto;}
+-->
+</style>
+<script>
+var urlinfo=window.location.href; //获取当前页面的url
+var len=urlinfo.length;//获取url的长度
+var offset=urlinfo.indexOf("?"); //设置参数字符串开始的位置 newsidinfo=urlinfo.substr(offset,len)//取出参数字符串 这里会获得类似“id=1”这样的字符串
+var newsids=urlinfo.substr(offset,len);
+var newsids1=newsids.split("=");//对获得的参数字符串按照“=”进行分割 newsid=newsids[1];//得到参数值
+// class
+var ids=newsids1[1].split("&");
+$.ajax({
+type: "post",
+url: "http://www.iwantuo.com/wantuo/activity/phoneGetId",
+dataType:"json",
+data:{"id":ids[0]},
+success: function(data){
+/* alert(data.a.largePath); */
+$("#imageId").attr("src",data.a.largePath);
+/* $("#organization").html(data.a.largePath); */
+}
+});
+</script>
+</head>
+<body>
+	<div class="box"><img id="imageId" src="" /></div>
+</body>
+</html>

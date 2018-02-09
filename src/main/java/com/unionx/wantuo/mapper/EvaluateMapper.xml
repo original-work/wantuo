@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.EvaluateMapper" >
+    <!--映射结果集-->
+  <resultMap id="BaseResultMap" type="com.unionx.wantuo.model.Evaluate" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="organization_accounts" property="organizationAccounts" jdbcType="VARCHAR" />
+    <result column="evaluate" property="evaluate" jdbcType="INTEGER" />
+    <result column="evaluate_person" property="evaluatePerson" jdbcType="VARCHAR" />
+    <result column="evaluate_details" property="evaluateDetails" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="status_name" property="statusName" jdbcType="VARCHAR" />
+    <result column="head_portrait" property="headPortrait" jdbcType="VARCHAR" />
+  </resultMap>
+	
+  <!-- 根据id查询评价 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_evaluate
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <!-- 根据id删除评论 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_evaluate
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <!-- 保存评价 -->
+  <insert id="insert" parameterType="com.unionx.wantuo.model.Evaluate" >
+    insert into t_evaluate (id, organization_accounts, evaluate, 
+      evaluate_person, evaluate_details, create_date, 
+      status, status_name)
+    values (#{id,jdbcType=INTEGER}, #{organizationAccounts,jdbcType=VARCHAR}, #{evaluate,jdbcType=INTEGER}, 
+      #{evaluatePerson,jdbcType=VARCHAR}, #{evaluateDetails,jdbcType=VARCHAR}, #{createDate,jdbcType=DATE}, 
+      #{status,jdbcType=INTEGER}, #{statusName,jdbcType=VARCHAR})
+  </insert>
+  
+  <!-- 根据选择条件添加评论 -->
+  <insert id="insertSelective" parameterType="com.unionx.wantuo.model.Evaluate" >
+    insert into t_evaluate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="organizationAccounts != null" >
+        organization_accounts,
+      </if>
+      <if test="evaluate != null" >
+        evaluate,
+      </if>
+      <if test="evaluatePerson != null" >
+        evaluate_person,
+      </if>
+      <if test="evaluateDetails != null" >
+        evaluate_details,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="statusName != null" >
+        status_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="organizationAccounts != null" >
+        #{organizationAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluate != null" >
+        #{evaluate,jdbcType=INTEGER},
+      </if>
+      <if test="evaluatePerson != null" >
+        #{evaluatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateDetails != null" >
+        #{evaluateDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null" >
+        #{statusName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <!-- 根据选择条件修改评论 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.unionx.wantuo.model.Evaluate" >
+    update t_evaluate
+    <set >
+      <if test="organizationAccounts != null" >
+        organization_accounts = #{organizationAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluate != null" >
+        evaluate = #{evaluate,jdbcType=INTEGER},
+      </if>
+      <if test="evaluatePerson != null" >
+        evaluate_person = #{evaluatePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateDetails != null" >
+        evaluate_details = #{evaluateDetails,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null" >
+        status_name = #{statusName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <!-- 修改评论 -->
+  <update id="updateByPrimaryKey" parameterType="com.unionx.wantuo.model.Evaluate" >
+
+    update t_evaluate
+    set organization_accounts = #{organizationAccounts,jdbcType=VARCHAR},
+      evaluate = #{evaluate,jdbcType=INTEGER},
+      evaluate_person = #{evaluatePerson,jdbcType=VARCHAR},
+      evaluate_details = #{evaluateDetails,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=DATE},
+      status = #{status,jdbcType=INTEGER},
+      status_name = #{statusName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <select id="getCount" resultType="java.lang.Integer">
+	SELECT  count(1)  from t_evaluate as te 
+	join t_patriarch as tp on tp.login_accounts=te.evaluate_person
+	<include refid="Example_Where_Clause" />
+</select>
+
+	<select id="queryByList" resultMap="BaseResultMap">
+		SELECT  <include refid="Base_Column_List" />  from t_evaluate as te 
+		join t_patriarch as tp on tp.login_accounts=te.evaluate_person
+		<include refid="Example_Where_Clause" />
+		<if test="limit != null and limit != ''">
+			${limit}
+		</if>
+	</select>
+
+ <sql id="Example_Where_Clause">
+	where 1=1 
+	<trim suffixOverrides=",">
+	 <if test="organizationAccounts != null and organizationAccounts !='' " >
+        and  te.organization_accounts= #{organizationAccounts,jdbcType=VARCHAR}
+     </if>
+     <if test="evaluate != null and evaluate !='' " >
+        and te.evaluate = #{evaluate,jdbcType=INTEGER}
+     </if>
+     <if test="evaluatePerson != null and evaluatePerson !='' " >
+        and te.evaluate_person = #{evaluatePerson,jdbcType=VARCHAR}
+     </if>
+     <if test="evaluateDetails != null and evaluateDetails !='' " >
+        and te.evaluate_details = #{evaluateDetails,jdbcType=VARCHAR}
+     </if>
+     <if test="createDate != null and createDate !='' " >
+        and te.create_date = #{createDate,jdbcType=DATE}
+     </if>
+     <if test="statusName != null and statusName !='' " >
+        and te.status_name = #{statusName,jdbcType=VARCHAR}
+     </if>
+        and te.status = 2
+	 order by te.create_date desc 
+	</trim>
+ </sql>
+
+ <sql id="Base_Column_List" >
+	    te.id, te.evaluate, te.evaluate_person, te.evaluate_details, te.create_date, 
+	    te.status, te.status_name,tp.head_portrait
+ </sql>
+ 
+ <!-- 后台管理查询评价 -->
+ <select id="adminSelect" parameterType="com.unionx.wantuo.model.Evaluate" resultMap="BaseResultMap">
+ 	select * from t_evaluate where status=2
+ 	<if test="organizationAccounts !=null and organizationAccounts !='' ">
+ 		and organization_accounts=#{organizationAccounts}
+ 	</if>
+ 	<if test="evaluatePerson !=null and evaluatePerson !='' ">
+ 		and evaluate_person=#{evaluatePerson}
+ 	</if>
+ 	<if test="evaluate !=null and evaluate!='' ">
+ 		and evaluate=#{evaluate}
+ 	</if>
+ 		order by create_date desc limit #{pageIndex},#{pageSize}
+ </select>
+ 
+ <!-- 后台管理查询评价总记录数 -->
+ <select id="adminSelectCount" parameterType="com.unionx.wantuo.model.Evaluate" resultType="java.lang.Integer">
+ 	select count(1) from t_evaluate where status=2
+ 	<if test="organizationAccounts !=null and organizationAccounts !='' ">
+ 		and organization_accounts=#{organizationAccounts}
+ 	</if>
+ 	<if test="evaluatePerson !=null and evaluatePerson !='' ">
+ 		and evaluate_person=#{evaluatePerson}
+ 	</if>
+ 	<if test="evaluate !=null and evaluate!='' ">
+ 		and evaluate=#{evaluate}
+ 	</if>
+ </select>
+ 
+ 
+  <select id="isComments" resultMap="BaseResultMap" parameterType="com.unionx.wantuo.model.Evaluate" >
+    select id from t_evaluate
+    where organization_accounts=#{organizationAccounts} and evaluate_person=#{evaluatePerson} and create_date like CONCAT(CONCAT('%', #{createDate}), '%')
+  </select>
+</mapper>

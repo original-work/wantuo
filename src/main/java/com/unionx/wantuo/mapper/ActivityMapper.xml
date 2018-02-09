@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.ActivityMapper" >
+  <resultMap id="BaseResultMap" type="com.unionx.wantuo.model.Activity" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="activity_name" property="activityName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="thumbnail_path" property="thumbnailPath" jdbcType="VARCHAR" />
+    <result column="large_path" property="largePath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, location, activity_name, create_date, thumbnail_path, large_path
+  </sql>
+  <!-- 根据id查询活动 -->
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_activity
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <!-- 根据id删除活动 -->
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_activity
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <!-- 添加活动 -->
+  <insert id="insert" parameterType="com.unionx.wantuo.model.Activity" >
+    insert into t_activity (id, location, activity_name, 
+      create_date, thumbnail_path, large_path
+      )
+    values (#{id,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR}, #{activityName,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{thumbnailPath,jdbcType=VARCHAR}, #{largePath,jdbcType=VARCHAR}
+      )
+  </insert>
+  <!-- 按条件添加活动 -->
+  <insert id="insertSelective" parameterType="com.unionx.wantuo.model.Activity" >
+    insert into t_activity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="activityName != null" >
+        activity_name,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="thumbnailPath != null" >
+        thumbnail_path,
+      </if>
+      <if test="largePath != null" >
+        large_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="activityName != null" >
+        #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="thumbnailPath != null" >
+        #{thumbnailPath,jdbcType=VARCHAR},
+      </if>
+      <if test="largePath != null" >
+        #{largePath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <!-- 根据条件修改活动 -->
+  <update id="updateByPrimaryKeySelective" parameterType="com.unionx.wantuo.model.Activity" >
+    update t_activity
+    <set >
+      <if test="location != null and location !='' " >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="activityName != null and activityName !='' " >
+        activity_name = #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null and  createDate !='' " >
+        create_date = #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnailPath != null and thumbnailPath !='' " >
+        thumbnail_path = #{thumbnailPath,jdbcType=VARCHAR},
+      </if>
+      <if test="largePath != null and largePath !='' " >
+        large_path = #{largePath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 修改活动 -->
+  <update id="updateByPrimaryKey" parameterType="com.unionx.wantuo.model.Activity" >
+    update t_activity
+    set location = #{location,jdbcType=VARCHAR},
+      activity_name = #{activityName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      thumbnail_path = #{thumbnailPath,jdbcType=VARCHAR},
+      large_path = #{largePath,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 查询所有活动 -->
+  <select id="selectAll" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_activity
+    where 1=1
+    <if test="activityName !=null and activityName !='' ">
+    	and activity_name=#{activityName}
+    </if>
+  </select>
+</mapper>

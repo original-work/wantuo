@@ -1,0 +1,23 @@
+﻿
+
+
+
+.textbox li input, .textbox li select {
+    padding: 3px;
+    border: solid 1px #CCC;
+    margin: 0px 7px 0px 4px;
+}
+.Wdate{ height: 26px; }
+
+.textbox li {
+    float: left;
+    margin: 3px 0;
+}
+
+.pd-20 {
+    padding: 15px 20px;
+}
+
+.mt-20 {
+    margin-top: 15px;
+}

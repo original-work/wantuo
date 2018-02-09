@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.StudentMapper">
+	<resultMap id="BaseResultMap" type="com.unionx.wantuo.model.Student">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="school_id" property="school_id" jdbcType="INTEGER" />
+		<result column="school" property="school" jdbcType="VARCHAR" />
+		<result column="grade_id" property="gradeId" jdbcType="INTEGER" />
+		<result column="grade" property="grade" jdbcType="VARCHAR" />
+		<result column="login_accounts" property="loginAccounts" jdbcType="VARCHAR" />
+		<result column="patriarch_id" property="patriarchId" jdbcType="INTEGER" />
+		<result column="patriarch" property="patriarch" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="INTEGER" />
+		<result column="create_date" property="createDate" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="status_name" property="statusName" jdbcType="VARCHAR" />
+		<result column="location_id" property="locationId" jdbcType="INTEGER" />
+		<result column="location" property="location" jdbcType="VARCHAR" />
+		<result column="bairro_id" property="bairroId" jdbcType="INTEGER" />
+		<result column="bairro" property="bairro" jdbcType="VARCHAR" />
+		<result column="kinsfolk" property="kinsfolk" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- abner 根据家长帐号查询学生 -->
+	<sql id="Base_Column_List">
+		id, name,school_id,school,grade_id,grade,login_accounts,patriarch_id,patriarch, phone, sex, create_date, status,
+		status_name,location_id,location,bairro_id,bairro,kinsfolk
+	</sql>
+	<!-- abner 根据家长帐号查询学生 -->
+	<select id="select" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_student
+		where 1=1
+		<if test="loginAccounts != null and loginAccounts != ''">
+			and login_accounts = #{loginAccounts}
+		</if>
+		<if test="status != null and status != ''">
+			and status = #{status}
+		</if>
+	</select>
+	
+	<!-- abner 保存学员信息 -->
+    <insert id="save" parameterType="com.unionx.wantuo.model.Student" keyProperty="id" useGeneratedKeys="true">
+    insert into t_student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null and id !='' ">
+        id,
+      </if>
+      <if test="name != null and name != '' ">
+        name,
+      </if>
+      <if test="school_id != null and school_id != '' ">
+        school_id,
+      </if>
+      <if test="school != null and school != '' ">
+        school,
+      </if>
+      <if test="gradeId != null and gradeId !='' ">
+        grade_id,
+      </if>
+      <if test="grade != null and grade !='' ">
+        grade,
+      </if>
+      <if test="loginAccounts != null and loginAccounts !='' ">
+        login_accounts,
+      </if>
+      <if test="patriarchId != null and patriarchId !='' ">
+        patriarch_id,
+      </if>
+      <if test="patriarch != null and patriarch !='' ">
+        patriarch,
+      </if>
+      <if test="phone != null and phone !='' ">
+        phone,
+      </if>
+      <if test="sex != null and sex !='' ">
+        sex,
+      </if>
+      <if test="createDate != null and createDate !='' ">
+        create_date,
+      </if>
+      <if test="locationId != null and locationId !='' ">
+        location_id,
+      </if>
+      <if test="location != null and location !='' ">
+        location,
+      </if>
+      <if test="bairroId != null and bairroId !='' ">
+        bairro_id,
+      </if>
+      <if test="bairro != null and bairro !='' ">
+        bairro,
+      </if>
+      <if test="status != null and status !='' ">
+        status,
+      </if>
+      <if test="statusName != null and statusName !='' ">
+        status_name,
+      </if>
+      <if test="kinsfolk != null and kinsfolk !='' ">
+        kinsfolk,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null and id !='' ">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null and name !='' ">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="school_id != null and school_id !=''">
+        #{school_id,jdbcType=INTEGER},
+      </if>
+      <if test="school != null and school !=''">
+        #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeId != null and gradeId !='' ">
+        #{gradeId,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null and grade !='' ">
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="loginAccounts != null and loginAccounts !='' ">
+        #{loginAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="patriarchId != null and patriarchId !='' ">
+        #{patriarchId,jdbcType=INTEGER},
+      </if>
+      <if test="patriarch != null and patriarch !='' ">
+        #{patriarch,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null and phone !='' ">
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null and sex !='' ">
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null and createDate !='' ">
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="locationId != null and locationId !='' ">
+        #{locationId,jdbcType=INTEGER},
+      </if>
+      <if test="location != null and location !='' ">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="bairroId != null and bairroId !='' ">
+        #{bairroId,jdbcType=INTEGER},
+      </if>
+      <if test="bairro != null and bairro !='' ">
+        #{bairro,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null and status !='' ">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null and statusName !='' ">
+        #{statusName,jdbcType=VARCHAR},
+      </if>
+      <if test="kinsfolk != null and kinsfolk !='' ">
+        #{kinsfolk,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+	<sql id="Base_Column_List_A">
+		s.id, s.name,s.school_id,s.school,s.grade_id,s.grade,s.login_accounts,s.patriarch_id,s.patriarch, s.phone, s.sex,ss.begin_date as create_date, s.status,
+		s.status_name,s.location_id,s.location,s.bairro_id,s.bairro,s.kinsfolk
+	</sql>
+   	<!-- abner 查询学生信息 -->
+	<select id="getById" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List_A" />
+		from t_student s join t_student_school ss on ss.student_id = s.id
+		where ss.student_id = #{studentId} and ss.organization_accounts = #{organization}
+	</select>
+ <!-- abner 修改学生信息 -->
+<update id="update" parameterType="com.unionx.wantuo.model.Student" >
+    update t_student
+    <set >
+      <if test="name != null and name != '' ">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="school_id != null and school_id != '' ">
+         school_id = #{school_id,jdbcType=INTEGER},
+      </if>
+      <if test="school != null and school != '' ">
+         school = #{school,jdbcType=VARCHAR},
+      </if>
+      <if test="gradeId != null and gradeId !='' ">
+        grade_id = #{gradeId,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null and grade !='' ">
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="loginAccounts != null and loginAccounts !='' ">
+        login_accounts = #{loginAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="patriarchId != null and patriarchId !='' ">
+        patriarch_id = #{patriarchId,jdbcType=INTEGER},
+      </if>
+      <if test="patriarch != null and patriarch !='' ">
+        patriarch = #{patriarch,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null and phone !='' ">
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null and sex !='' ">
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null and createDate !='' ">
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="locationId != null and locationId !='' ">
+        location_id = #{locationId,jdbcType=INTEGER},
+      </if>
+      <if test="location != null and location !='' ">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="bairroId != null and bairroId !='' ">
+        bairro_id = #{bairroId,jdbcType=INTEGER},
+      </if>
+      <if test="bairro != null and bairro !='' ">
+        bairro = #{bairro,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null and status !='' ">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null and statusName !='' ">
+        status_name = #{statusName,jdbcType=VARCHAR},
+      </if>
+      <if test="kinsfolk != null and kinsfolk !='' ">
+        kinsfolk = #{kinsfolk,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  <!-- abner 机构年级报表 --> 
+	    <select id="getCount" resultType="java.lang.Integer">
+		select COUNT(t.o) from
+		(select COUNT(o.organization) as o from t_student_school SS
+		 join t_student s on SS.student_id = s.id 
+		 join t_organization o on SS.organization_accounts = o.login_accounts
+		 where s.`status`=2 
+		 	  <if test="loginAccounts != null and loginAccounts !='' " >
+      and o.organization LIKE CONCAT('%',#{loginAccounts},'%')
+      </if>
+		 GROUP BY o.organization,s.grade) t
+	</select>
+
+	<select id="queryByList" resultMap="BaseResultMap_E">
+		SELECT  <include refid="Base_Column_List_C" />  from t_student_school SS
+		 join t_student s on SS.student_id = s.id 
+		 join t_organization o on SS.organization_accounts = o.login_accounts
+		 where s.`status`=2  and o.`check` != 0
+	  <if test="loginAccounts != null and loginAccounts !='' " >
+      and o.organization LIKE CONCAT('%',#{loginAccounts},'%')
+      </if>
+		 GROUP BY o.organization,s.grade
+		<if test="limit != null and limit != ''">
+			${limit}
+		</if>
+	</select>
+	
+	  <sql id="Base_Column_List_C" >
+	  o.organization,s.grade,COUNT(1) as count
+  </sql>
+  
+     <resultMap id="BaseResultMap_E" type="com.unionx.wantuo.model.Student" >
+    <result column="count" property="id" jdbcType="INTEGER" />
+    <result column="organization" property="name" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- abner -->
+  	<select id="queryById" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List" />
+		from t_student s where s.id = #{studentId}
+	</select>
+</mapper>

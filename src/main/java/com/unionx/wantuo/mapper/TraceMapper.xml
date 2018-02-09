@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.TraceMapper" >
+  <resultMap id="BaseResultMap" type="com.unionx.wantuo.model.Trace" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="organization_accounts" property="organizationAccounts" jdbcType="VARCHAR" />
+    <result column="student_id" property="studentId" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="sign_in" property="signIn" jdbcType="VARCHAR" />
+    <result column="sign_in_image" property="signInImage" jdbcType="VARCHAR" />
+    <result column="leave" property="leave" jdbcType="VARCHAR" />
+    <result column="leave_image" property="leaveImage" jdbcType="VARCHAR" />
+    <result column="work_status" property="workStatus" jdbcType="INTEGER" />
+    <result column="work_status_name" property="workStatusName" jdbcType="VARCHAR" />
+    <result column="behavior" property="behavior" jdbcType="VARCHAR" />
+    <result column="study" property="study" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="subject_name" property="subjectName" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="status_name" property="statusName" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="signin_date" property="signinDate" jdbcType="VARCHAR" />
+    <result column="signin_person" property="signinPerson" jdbcType="VARCHAR" />
+    <result column="leave_date" property="leaveDate" jdbcType="VARCHAR" />
+    <result column="leave_person" property="leavePerson" jdbcType="VARCHAR" />
+    <result column="summary_person" property="summaryPerson" jdbcType="VARCHAR" />
+    <result column="summary_date" property="summaryDate" jdbcType="VARCHAR" />
+  </resultMap>
+  
+    <!-- abner 获取单个每日跟踪 -->
+    <sql id="Base_Column_List" >
+    t.id,t.organization_accounts,t.student_id,t.create_date,t.sign_in,a.path as sign_in_image,t.leave,ay.path as leave_image,t.work_status
+    ,t.work_status_name,t.behavior,t.study,t.grade,t.subject,t.subject_name,t.status,t.status_name,t.note
+    ,t.signin_person,t.leave_date,t.leave_person,t.summary_person,t.summary_date,t.signin_date
+    </sql>
+  	<!-- abner 获取单个每日跟踪 -->
+	<select id="getById" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM t_trace t left join t_accessory a on t.sign_in_image=a.name
+		                      left join t_accessory ay on t.leave_image=ay.name
+		where 1=1
+			<if test="studentId != null and studentId != ''">
+				and t.student_id =#{studentId}
+			</if>
+			<if test="organizationAccounts != null and organizationAccounts != ''">
+				and t.organization_accounts =#{organizationAccounts}
+			</if>
+			<if test="createDate != null and createDate != ''">
+				and t.create_date =#{createDate}
+			</if>
+		    <if test="id != null and id != ''">
+				and t.id =#{id}
+			</if>
+	</select>
+	<!-- abner 保存单个每日跟踪 -->
+    <insert id="save" parameterType="com.unionx.wantuo.model.Trace">
+    insert into t_trace
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null and id !='' ">
+        id,
+      </if>
+      <if test="organizationAccounts != null and organizationAccounts != '' ">
+        organization_accounts,
+      </if>
+      <if test="studentId != null and studentId != '' ">
+        student_id,
+      </if>
+      <if test="createDate != null and createDate !='' ">
+        create_date,
+      </if>
+      <if test="signIn != null and signIn !='' ">
+        sign_in,
+      </if>
+      <if test="signInImage != null and signInImage !='' ">
+        sign_in_image,
+      </if>
+      <if test="leave != null and leave !='' ">
+        leave,
+      </if>
+      <if test="leaveImage != null and leaveImage !='' ">
+        leave_image,
+      </if>
+      <if test="workStatus != null and workStatus !='' ">
+        work_status,
+      </if>
+      <if test="workStatusName != null and workStatusName !='' ">
+        work_status_name,
+      </if>
+      <if test="behavior != null and behavior !='' ">
+        behavior,
+      </if>
+      <if test="study != null and study !='' ">
+        study,
+      </if>
+      <if test="grade != null and grade !='' ">
+        grade,
+      </if>
+      <if test="subject != null and subject !='' ">
+        subject,
+      </if>
+      <if test="subjectName != null and subjectName !='' ">
+        subject_name,
+      </if>
+      <if test="status != null and status !='' ">
+        status,
+      </if>
+      <if test="statusName != null and statusName !='' ">
+        status_name,
+      </if>
+      <if test="note != null and note !='' ">
+        note,
+      </if>
+      <if test="signinDate != null and signinDate !='' ">
+        signin_date,
+      </if>
+      <if test="signinPerson != null and signinPerson !='' ">
+        signin_person,
+      </if>
+      <if test="leaveDate != null and leaveDate !='' ">
+        leave_date,
+      </if>
+      <if test="leavePerson != null and leavePerson !='' ">
+        leave_person,
+      </if>
+      <if test="summaryPerson != null and summaryPerson !='' ">
+        summary_person,
+      </if>
+      <if test="summaryDate != null and summaryDate !='' ">
+        summary_date,
+      </if>
+      <if test="classId != null and classId !='' ">
+        classId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null and id !='' ">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="organizationAccounts != null and organizationAccounts !='' ">
+        #{organizationAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null and studentId !=''">
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null and createDate !='' ">
+        #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="signIn != null and signIn !='' ">
+        #{signIn,jdbcType=VARCHAR},
+      </if>
+      <if test="signInImage != null and signInImage !='' ">
+        #{signInImage,jdbcType=VARCHAR},
+      </if>
+      <if test="leave != null and leave !='' ">
+        #{leave,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveImage != null and leaveImage !='' ">
+        #{leaveImage,jdbcType=VARCHAR},
+      </if>
+      <if test="workStatus != null and workStatus !='' ">
+        #{workStatus,jdbcType=INTEGER},
+      </if>
+      <if test="workStatusName != null and workStatusName !='' ">
+        #{workStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="behavior != null and behavior !='' ">
+        #{behavior,jdbcType=VARCHAR},
+      </if>
+      <if test="study != null and study !='' ">
+        #{study,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null and grade !='' ">
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null and subject !='' ">
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectName != null and subjectName !='' ">
+        #{subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null and status !='' ">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null and statusName !='' ">
+        #{statusName,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null and note !='' ">
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="signinDate != null and signinDate !='' ">
+        #{signinDate,jdbcType=DATE},
+      </if>
+      <if test="signinPerson != null and signinPerson !='' ">
+        #{signinPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveDate != null and leaveDate !='' ">
+        #{leaveDate,jdbcType=DATE},
+      </if>
+      <if test="leavePerson != null and leavePerson !='' ">
+        #{leavePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryPerson != null and summaryPerson !='' ">
+        #{summaryPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryDate != null and summaryDate !='' ">
+        #{summaryDate,jdbcType=VARCHAR},
+      </if>
+      <if test="classId != null and classId !='' ">
+        #{classId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <!-- abner 修改单个每日跟踪 -->
+  <update id="update" parameterType="com.unionx.wantuo.model.Trace" >
+    update t_trace
+    <set>
+      <if test="organizationAccounts != null and organizationAccounts != ''" >
+        organization_accounts = #{organizationAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="studentId != null and studentId != ''" >
+        student_id = #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null and createDate != ''" >
+        create_date = #{createDate,jdbcType=Date},
+      </if>
+      <if test="signIn != null and signIn != ''" >
+        sign_in = #{signIn,jdbcType=VARCHAR},
+      </if>
+      <if test="signInImage != null and signInImage != ''" >
+        sign_in_image = #{signInImage,jdbcType=VARCHAR},
+      </if>
+      <if test="leave != null and leave != ''" >
+        `leave` = #{leave,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveImage != null and leaveImage != ''" >
+        leave_image = #{leaveImage,jdbcType=VARCHAR},
+      </if>
+      <if test="workStatus != null and workStatus != ''" >
+        work_status = #{workStatus,jdbcType=INTEGER},
+      </if>
+      <if test="workStatusName != null and workStatusName != ''" >
+        work_status_name = #{workStatusName,jdbcType=VARCHAR},
+      </if>
+      <if test="behavior != null and behavior != ''" >
+        behavior = #{behavior,jdbcType=VARCHAR},
+      </if>
+      <if test="study != null and study != ''" >
+        study = #{study,jdbcType=VARCHAR},
+      </if>
+      <if test="grade != null and grade != ''" >
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="subject != null and subject != ''" >
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="subjectName != null and subjectName != ''" >
+        subject_name = #{subjectName,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null and status != ''" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null and statusName != ''" >
+        status_name = #{statusName,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null and note != ''" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="signinDate != null and signinDate != ''" >
+        signin_date = #{signinDate,jdbcType=DATE},
+      </if>
+      <if test="signinPerson != null and signinPerson != ''" >
+        signin_person = #{signinPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="leaveDate != null and leaveDate != ''" >
+        leave_date = #{leaveDate,jdbcType=DATE},
+      </if>
+      <if test="leavePerson != null and leavePerson != ''" >
+        leave_person = #{leavePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryPerson != null and summaryPerson != ''" >
+        summary_person = #{summaryPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="summaryDate != null and summaryDate != ''" >
+        summary_date = #{summaryDate,jdbcType=DATE},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- abner 手机端根据学科月份查询学生成绩曲线图-->
+   <resultMap id="BaseResultMap_A" type="com.unionx.wantuo.model.TraceMap" >
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+  </resultMap>
+    <!-- abner 手机端根据学科月份查询学生成绩曲线图-->
+    <sql id="Base_Column_List_A" >
+    create_date,grade
+    </sql>
+  	<!-- abner 手机端根据学科月份查询学生成绩曲线图 -->
+	<select id="selectSubjectGrade" resultMap="BaseResultMap_A">
+		SELECT
+		<include refid="Base_Column_List_A" />
+		FROM t_trace t where 1=1 and status=3
+			<if test="studentId != null and studentId != ''">
+				and student_id =#{studentId}
+			</if>
+			<if test="subject != null and subject != ''">
+				and subject =#{subject}
+			</if>
+			<if test="createDate != null and createDate != ''">
+			    and create_date LIKE CONCAT(#{createDate},'%')
+			</if>
+			order by create_date asc
+	</select>
+	
+	<!-- abner 手机端根据月份查询行为曲线、学习曲线曲线图-->
+   <resultMap id="BaseResultMap_B" type="com.unionx.wantuo.model.TraceShow" >
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="behavior" property="behavior" jdbcType="VARCHAR" />
+    <result column="study" property="study" jdbcType="VARCHAR" />
+  </resultMap>
+    <!-- abner 手机端根据月份查询行为曲线、学习曲线曲线图-->
+    <sql id="Base_Column_List_B" >
+    create_date,behavior,study
+    </sql>
+  	<!-- abner 手机端根据月份查询行为曲线、学习曲线曲线图-->
+	<select id="phoneSelectShow" resultMap="BaseResultMap_B">
+		SELECT
+		<include refid="Base_Column_List_B" />
+		FROM t_trace t where 1=1 and status=3
+			<if test="studentId != null and studentId != ''">
+				and student_id =#{studentId}
+			</if>
+			<if test="createDate != null and createDate != ''">
+			    and create_date LIKE CONCAT(#{createDate},'%')
+			</if>
+			order by create_date asc
+	</select>
+	
+	<!-- abner 查询所有学生平均评价-->
+    <resultMap id="BaseResultMap_C" type="com.unionx.wantuo.model.TraceAverage" >
+     <result column="student_id" property="studentId" jdbcType="VARCHAR" />
+     <result column="average" property="average" jdbcType="DOUBLE" />
+    </resultMap>
+	<!-- abner 查询所有学生平均评价-->
+	<select id="phoneAverage" resultMap="BaseResultMap_C">
+		select (SUM(behavior)+SUM(study))/COUNT(1) as average,student_id from t_trace where status=3 GROUP BY student_id  ORDER BY average DESC 
+	</select>
+	
+	   <resultMap id="BaseResultMap_D" type="com.unionx.wantuo.model.Login">
+        <result column="login_accounts" property="loginAccounts" jdbcType="VARCHAR" />
+		<result column="c_id" property="cId" jdbcType="VARCHAR" />
+        <result column="device_token" property="deviceToken" jdbcType="VARCHAR" />
+	</resultMap>
+  <!-- abner 根据学生id查询家长帐号 -->
+  	<select id="sSelectPushP" resultMap="BaseResultMap_D">
+		SELECT DISTINCT l.login_accounts,l.c_id,l.device_token FROM t_student s
+		join t_login l on l.login_accounts = s.login_accounts
+		where s.id = #{studentId} and l.accounts_type=1
+	</select>
+	
+	<!-- abner 签到报表 --> 
+	    <select id="getCount" resultType="java.lang.Integer">
+		SELECT  count(1)  from t_trace t 
+		join t_organization o on t.organization_accounts = o.login_accounts
+		join t_class c on t.classId = c.id
+		join t_student s on t.student_id = s.id 
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="queryByList" resultMap="BaseResultMap_E">
+		SELECT  <include refid="Base_Column_List_C" />  from t_trace t 
+		join t_organization o on t.organization_accounts = o.login_accounts
+		join t_class c on t.classId = c.id
+		join t_student s on t.student_id = s.id 
+		<include refid="Example_Where_Clause" />
+		<if test="limit != null and limit != ''">
+			${limit}
+		</if>
+	</select>
+	
+	<sql id="Example_Where_Clause">
+		where 1=1 
+		<trim suffixOverrides=",">
+		 <if test="organizationName != null and organizationName !='' " >
+		 	and o.organization LIKE CONCAT('%',#{organizationName},'%')
+      	</if>
+<!--       	<if test="signinDate !=null and signinDate!=''">
+      		and signin_date like  CONCAT(CONCAT('%',#{signinDate}),'%')
+      	</if> -->
+      <if test="signinDateBegin != null and signinDateBegin != ''">
+        <![CDATA[ and t.signin_date >= #{signinDateBegin}]]>
+      </if>
+      <if test="signinDateEnd != null and signinDateEnd != ''">
+        <![CDATA[ and t.signin_date <= #{signinDateEnd}]]>
+      </if>
+      <if test="className != null and className !='' " >
+      and c.organization_class LIKE CONCAT('%',#{className},'%')
+      </if>
+      and o.check != 0
+		 order by t.signin_date DESC 
+		</trim>
+	</sql>
+	
+	  <sql id="Base_Column_List_C" >
+	  o.organization,c.organization_class,s.name,t.signin_date
+  </sql>
+  
+     <resultMap id="BaseResultMap_E" type="com.unionx.wantuo.model.Trace" >
+    <result column="organization" property="organizationName" jdbcType="VARCHAR" />
+    <result column="organization_class" property="className" jdbcType="VARCHAR" />
+    <result column="name" property="studentName" jdbcType="VARCHAR" />
+    <result column="signin_date" property="signinDate" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  	<!-- abner 查询所有学生平均评价-->
+	<select id="phoneAverageWhere" resultMap="BaseResultMap_C">
+		select (SUM(t.behavior)+SUM(t.study))/COUNT(1) as average,t.student_id 
+		from t_trace t 
+		join t_student s on s.id = t.student_id
+		where t.status=3 
+		<if test="grade != null and grade !='' " >
+         and s.grade = #{grade}
+        </if>
+		GROUP BY t.student_id  ORDER BY average DESC 
+	</select>
+	
+	<!-- abner 查询每日平均评价 -->
+	<resultMap id="BaseResultMap_F" type="com.unionx.wantuo.model.TraceAverage">
+		<result column="create_date" property="createDate" jdbcType="VARCHAR" />
+		<result column="average" property="average" jdbcType="DOUBLE" />
+	</resultMap>
+	<sql id="Base_Column_List_D">
+		 create_date,(behavior+study)/2 as average
+	</sql>
+	<select id="phoneSelectShowAverage" resultMap="BaseResultMap_F">
+		SELECT
+		<include refid="Base_Column_List_D" />
+		FROM t_trace t where 1=1 and status=3
+		<if test="studentId != null and studentId != ''">
+			and student_id =#{studentId}
+		</if>
+		<if test="createDate != null and createDate != ''">
+			and create_date LIKE CONCAT(#{createDate},'%')
+		</if>
+		order by create_date asc
+	</select>
+</mapper>

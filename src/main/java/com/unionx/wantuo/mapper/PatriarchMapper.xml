@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.PatriarchMapper" >
+  <resultMap id="BaseResultMap" type="com.unionx.wantuo.model.Patriarch" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="login_accounts" property="loginAccounts" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="status_name" property="statusName" jdbcType="VARCHAR" />
+    <result column="patriarch_name" property="patriarchName" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="head_portrait" property="headPortrait" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, login_accounts, phone, create_date, status, status_name, patriarch_name, address, 
+    sex, age
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_patriarch
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_patriarch
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.unionx.wantuo.model.Patriarch" >
+    insert into t_patriarch (id, login_accounts, phone, 
+      create_date, status, status_name, 
+      patriarch_name, address, sex, 
+      age)
+    values (#{id,jdbcType=INTEGER}, #{loginAccounts,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=DATE}, #{status,jdbcType=INTEGER}, #{statusName,jdbcType=VARCHAR}, 
+      #{patriarchName,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, 
+      #{age,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.unionx.wantuo.model.Patriarch" >
+    insert into t_patriarch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !='' " >
+        id,
+      </if>
+      <if test="loginAccounts != null and loginAccounts !='' " >
+        login_accounts,
+      </if>
+      <if test="phone != null and phone !='' " >
+        phone,
+      </if>
+      <if test="createDate != null and createDate !='' " >
+        create_date,
+      </if>
+      <if test="status != null and status !='' " >
+        status,
+      </if>
+      <if test="statusName != null and statusName !='' " >
+        status_name,
+      </if>
+      <if test="patriarchName != null and patriarchName !='' " >
+        patriarch_name,
+      </if>
+      <if test="address != null and address !='' " >
+        address,
+      </if>
+      <if test="sex != null and sex !='' " >
+        sex,
+      </if>
+      <if test="age != null and age !='' " >
+        age,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !='' " >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginAccounts != null and loginAccounts !='' " >
+        #{loginAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null and phone !='' " >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null and createDate !='' " >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="status != null and status !='' " >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null and statusName !='' " >
+        #{statusName,jdbcType=VARCHAR},
+      </if>
+      <if test="patriarchName != null and patriarchName!='' " >
+        #{patriarchName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null and address !='' " >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null and sex !='' " >
+        #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null and age !='' " >
+        #{age,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.unionx.wantuo.model.Patriarch" >
+    update t_patriarch
+    <set>
+      <if test="phone != null and phone !='' " >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null and createDate !='' " >
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="status != null and status !='' " >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null and statusName !='' " >
+        status_name = #{statusName,jdbcType=VARCHAR},
+      </if>
+      <if test="patriarchName != null and patriarchName !='' " >
+        patriarch_name = #{patriarchName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null and address !='' " >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null and sex !='' " >
+        sex = #{sex,jdbcType=INTEGER},
+      </if>
+      <if test="age != null and age !='' " >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="nickName != null and nickName !='' " >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="headPortrait != null and headPortrait !='' " >
+        head_portrait = #{headPortrait,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where login_accounts = #{loginAccounts,jdbcType=INTEGER} and status = 2
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.unionx.wantuo.model.Patriarch" >
+    update t_patriarch
+    set login_accounts = #{loginAccounts,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=DATE},
+      status = #{status,jdbcType=INTEGER},
+      status_name = #{statusName,jdbcType=VARCHAR},
+      patriarch_name = #{patriarchName,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=INTEGER},
+      age = #{age,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findByLoginAccounts" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from  t_patriarch where login_accounts=#{loginAccounts} and status = 2
+  </select>
+  
+    <sql id="Base_Column_List_A" >
+    id, login_accounts, phone, create_date, status, status_name, patriarch_name, address, 
+    sex, age,nick_name,head_portrait
+  </sql>
+  
+    <select id="getCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM t_patriarch
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="queryByList" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List_A" /> from t_patriarch
+		<include refid="Example_Where_Clause" />
+		order by create_date DESC
+		<if test="limit != null and limit != ''">
+			${limit}
+		</if>
+	</select>
+  
+  <sql id="Example_Where_Clause">
+		where 1=1
+	<trim suffixOverrides=",">
+	  <if test="loginAccounts != null and loginAccounts != ''" >
+	     and login_accounts LIKE CONCAT('%',#{loginAccounts},'%')
+      </if>
+         and status != 0
+	</trim>
+  </sql>
+  
+  
+  <update id="updateByLoginAccounts" parameterType="Object">
+  	update t_patriarch set  
+  	<if test="status == null or status == ''" >
+        status =0
+     </if>
+      <if test="status != null and status != ''" >
+        status = #{status,jdbcType=INTEGER}
+      </if>
+       where login_accounts=#{login_accounts}
+  </update>
+  
+    <update id="updatePatriarchId" parameterType="Object">
+  	update t_patriarch set  
+  	<if test="status == null or status == ''" >
+        status =0
+     </if>
+      <if test="status != null and status != ''" >
+        status = #{status,jdbcType=INTEGER}
+      </if>
+       where id=#{id}
+  </update>
+</mapper>

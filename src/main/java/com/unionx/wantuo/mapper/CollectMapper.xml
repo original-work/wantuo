@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.CollectMapper" >
+  <resultMap id="BaseResultMap" type="com.unionx.wantuo.model.Collect" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="patriarch_accounts" property="patriarchAccounts" jdbcType="VARCHAR" />
+    <result column="organization_accounts" property="organizationAccounts" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="status_name" property="statusName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, patriarch_accounts, organization_accounts, create_date, status, status_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_collect
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_collect
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.unionx.wantuo.model.Collect" >
+    insert into t_collect (id, patriarch_accounts, organization_accounts, 
+      create_date, status, status_name
+      )
+    values (#{id,jdbcType=INTEGER}, #{patriarchAccounts,jdbcType=VARCHAR}, #{organizationAccounts,jdbcType=VARCHAR}, 
+      #{createDate,jdbcType=DATE}, #{status,jdbcType=INTEGER}, #{statusName,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.unionx.wantuo.model.Collect" >
+    insert into t_collect
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !='' ">
+        id,
+      </if>
+      <if test="patriarchAccounts != null and patriarchAccounts !='' " >
+        patriarch_accounts,
+      </if>
+      <if test="organizationAccounts != null and organizationAccounts !='' " >
+        organization_accounts,
+      </if>
+      <if test="createDate != null and createDate !='' " >
+        create_date,
+      </if>
+      <if test="status != null and status !='' " >
+        status,
+      </if>
+      <if test="statusName != null and statusName !='' " >
+        status_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !='' " >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="patriarchAccounts != null and patriarchAccounts !='' " >
+        #{patriarchAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationAccounts != null and organizationAccounts !='' " >
+        #{organizationAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null and createDate !='' " >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="status != null and status !='' " >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null and statusName !='' " >
+        #{statusName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.unionx.wantuo.model.Collect" >
+    update t_collect
+    <set >
+      <if test="patriarchAccounts != null" >
+        patriarch_accounts = #{patriarchAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationAccounts != null" >
+        organization_accounts = #{organizationAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null" >
+        status_name = #{statusName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.unionx.wantuo.model.Collect" >
+    update t_collect
+    set patriarch_accounts = #{patriarchAccounts,jdbcType=VARCHAR},
+      organization_accounts = #{organizationAccounts,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=DATE},
+      status = #{status,jdbcType=INTEGER},
+      status_name = #{statusName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="getCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM t_collect
+		<include refid="Example_Where_Clause" />
+	</select>
+
+	<select id="queryByList" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List" /> from t_collect
+		<include refid="Example_Where_Clause" />
+		<if test="limit != null and limit != ''">
+			${limit}
+		</if>
+	</select>
+  
+  <sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+		 <if test="patriarchAccounts != null and patriarchAccounts != ''" >
+          and patriarch_accounts = #{patriarchAccounts,jdbcType=VARCHAR}
+      </if>
+      <if test="organizationAccounts != null and organizationAccounts != ''" >
+         and organization_accounts = #{organizationAccounts,jdbcType=VARCHAR}
+      </if>
+      <if test="createDate != null and createDate != ''" >
+         and create_date = #{createDate,jdbcType=DATE}
+      </if>
+      <if test="statusName != null and statusName != ''" >
+         and status_name = #{statusName,jdbcType=VARCHAR}
+      </if>
+         order by create_date desc
+		</trim>
+  </sql>
+  <delete id="unfavorite" parameterType="java.lang.String">
+  	DELETE from t_collect where patriarch_accounts = #{patriarchAccounts} and organization_accounts = #{organizationAccounts}
+  </delete>
+  
+  <select id="select" resultType="java.lang.Integer">
+    select COUNT(1) from t_collect 
+    where organization_accounts = #{organizationAccounts} and patriarch_accounts = #{patriarchAccounts}
+   </select>
+   
+  <sql id="Base_Column_List_A" >
+   		o.id,o.location,o.location_name,o.bairro,o.bairro_name,o.address,o.login_accounts,o.email,o.organizatio_type,o.organizatio_type_name,o.organization_abbreviation
+		,o.organization,o.organization_contacts,o.coordinate_x,o.coordinate_y,o.phone,o.id_card,o.business_license
+		,o.create_date,o.update_date,o.attestation,o.attestation_name,o.warranty,o.warranty_name,o.introduce,o.label,o.photo_album,o.cost,o.order_num
+		,o.evaluate,o.evaluate_num,o.subject,o.teacher
+  </sql>
+  
+   <resultMap id="BaseResultMap_A" type="com.unionx.wantuo.model.Organization" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="location" property="location" jdbcType="INTEGER" />
+	<result column="location_name" property="locationName" jdbcType="VARCHAR" />
+	<result column="bairro" property="bairro" jdbcType="INTEGER" />
+	<result column="bairro_name" property="bairroName" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="login_accounts" property="loginAccounts" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="organizatio_type" property="organizatioType" jdbcType="INTEGER" />
+    <result column="organizatio_type_name" property="organizatioTypeName" jdbcType="VARCHAR" />
+    <result column="organization_abbreviation" property="organizationAbbreviation" jdbcType="VARCHAR" />
+    <result column="organization" property="organization" jdbcType="VARCHAR" />
+    <result column="organization_contacts" property="organizationContacts" jdbcType="VARCHAR" />
+    <result column="id_card_image" property="idCardImage" jdbcType="VARCHAR" />
+    <result column="business_license_image" property="businessLicenseImage" jdbcType="VARCHAR" />
+    <result column="coordinate_x" property="coordinateX" jdbcType="VARCHAR" />
+    <result column="coordinate_y" property="coordinateY" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="business_license" property="businessLicense" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="VARCHAR" />
+    <result column="check" property="check" jdbcType="INTEGER" />
+    <result column="check_name" property="checkName" jdbcType="VARCHAR" />
+    <result column="attestation" property="attestation" jdbcType="INTEGER" />
+    <result column="attestation_name" property="attestationName" jdbcType="VARCHAR" />
+    <result column="warranty" property="warranty" jdbcType="INTEGER" />
+    <result column="warranty_name" property="warrantyName" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="label" property="label" jdbcType="VARCHAR" />
+    <result column="photo_album" property="photoAlbum" jdbcType="VARCHAR" />
+    <result column="cost" property="cost" jdbcType="DOUBLE" />
+    <result column="order_num" property="orderNum" jdbcType="INTEGER" />
+    <result column="evaluate" property="evaluate" jdbcType="DOUBLE" />
+    <result column="evaluate_num" property="evaluateNum" jdbcType="INTEGER" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="teacher" property="teacher" jdbcType="VARCHAR" />
+    <result column="head_Portrait" property="headPortrait" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="count" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM t_collect c 
+		join t_organization o on c.organization_accounts=o.login_accounts
+		<include refid="Example_Where_Clause_A" />
+	</select>
+
+	<select id="queryList" resultMap="BaseResultMap_A">
+		SELECT <include refid="Base_Column_List_A" /> from t_collect c
+		join t_organization o on c.organization_accounts=o.login_accounts
+		<include refid="Example_Where_Clause_A" />
+		<if test="limit != null and limit != ''">
+			${limit}
+		</if>
+	</select>
+  
+    <sql id="Example_Where_Clause_A">
+		where 1=1
+		<trim suffixOverrides=",">
+		 <if test="patriarchAccounts != null and patriarchAccounts != ''" >
+          and c.patriarch_accounts = #{patriarchAccounts,jdbcType=VARCHAR}
+      </if>
+      <if test="organizationAccounts != null and organizationAccounts != ''" >
+         and c.organization_accounts = #{organizationAccounts,jdbcType=VARCHAR}
+      </if>
+      <if test="createDate != null and createDate != ''" >
+         and c.create_date = #{createDate,jdbcType=DATE}
+      </if>
+         and o.check = 2
+      <if test="statusName != null and statusName != ''" >
+         and c.status_name = #{statusName,jdbcType=VARCHAR}
+      </if>
+         order by c.create_date desc
+		</trim>
+  </sql>
+</mapper>

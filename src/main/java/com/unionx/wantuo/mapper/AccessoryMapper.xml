@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.unionx.wantuo.dao.AccessoryMapper">
+  <resultMap id="BaseResultMap" type="com.unionx.wantuo.model.Accessory">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="create_date" jdbcType="VARCHAR" property="createDate" />
+    <result column="ext" jdbcType="VARCHAR" property="ext" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="status_name" jdbcType="VARCHAR" property="statusName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, create_date, ext, name, path, status, status_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_accessory
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_accessory
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.unionx.wantuo.model.Accessory">
+    insert into t_accessory (id, create_date, ext, 
+      name, path, status, 
+      status_name)
+    values (#{id,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{ext,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{statusName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.unionx.wantuo.model.Accessory">
+    insert into t_accessory
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null and id !='' ">
+        id,
+      </if>
+      <if test="createDate != null and createDate != '' ">
+        create_date,
+      </if>
+      <if test="ext != null and ext != '' ">
+        ext,
+      </if>
+      <if test="name != null and name !='' ">
+        name,
+      </if>
+      <if test="path != null and path !='' ">
+        path,
+      </if>
+      <if test="status != null and status !='' ">
+        status,
+      </if>
+      <if test="statusName != null and statusName !='' ">
+        status_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null and id !='' ">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null and createDate !='' ">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext != null and ext !=''">
+        #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null and name !='' ">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null and path !='' ">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null and status !='' ">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null and statusName !='' ">
+        #{statusName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.unionx.wantuo.model.Accessory">
+    update t_accessory
+    <set>
+      <if test="createDate != null and createDate !='' ">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ext != null and ext !='' ">
+        ext = #{ext,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null and name !='' ">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null and path !='' ">
+        path = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null and status !='' ">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null and statusName !='' ">
+        status_name = #{statusName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.unionx.wantuo.model.Accessory">
+    update t_accessory
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      ext = #{ext,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      path = #{path,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      status_name = #{statusName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+    <!-- abner 根据文件名称获取文件地址 -->
+	<select id="getByName" resultMap="BaseResultMap" parameterType="Object">
+		SELECT
+		<include refid="Base_Column_List_A" />
+		FROM t_accessory where 1=1
+	    <if test="name != null and name != ''">
+			and name=#{name}
+		</if>
+	</select>
+	<sql id="Base_Column_List_A">
+        id,create_date,ext,name,path,status,status_name
+    </sql>
+</mapper>

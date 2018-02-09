@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.ManageMapper">
+	<resultMap id="BaseResultMap" type="com.unionx.wantuo.model.Manage">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="login_accounts" property="login_accounts" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="manage_name" property="manage_name" jdbcType="VARCHAR" />
+		<result column="create_date" property="create_date" jdbcType="VARCHAR" />
+		<result column="update_date" property="update_date" jdbcType="VARCHAR" />
+		<result column="last_login_date" property="last_login_date" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="status_name" property="status_name" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id != ''">
+				and id = #{id}
+			</if>
+			<if test="login_accounts != null and login_accounts != ''">
+				and login_accounts = #{login_accounts}
+			</if>
+<!-- 			<if test="password != null and password != ''">
+				and password = #{password}
+			</if> -->
+			<if test="manage_name != null and manage_name != ''">
+				and manage_name = #{manage_name}
+			</if>
+			and status = 2 ORDER BY create_date DESC
+		</trim>
+	</sql>
+
+	<sql id="Base_Column_List">
+		id,login_accounts,password,manage_name,create_date,update_date,last_login_date,status,status_name
+	</sql>
+
+	<select id="getCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM t_manage
+		<include refid="Example_Where_Clause_A" />
+	</select>
+
+	<select id="queryByList" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List" /> FROM t_manage
+		<include refid="Example_Where_Clause_A" />
+		<if test="limit != null and limit != ''">
+			${limit}
+		</if>
+	</select>
+	
+		<sql id="Example_Where_Clause_A">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id != ''">
+				and id = #{id}
+			</if>
+			<if test="login_accounts != null and login_accounts != ''">
+			    and login_accounts LIKE CONCAT('%',#{login_accounts},'%')
+			</if>
+<!-- 			<if test="password != null and password != ''">
+				and password = #{password}
+			</if> -->
+			<if test="manage_name != null and manage_name != ''">
+				and manage_name = #{manage_name}
+			</if>
+			and status = 2 ORDER BY create_date desc
+		</trim>
+	</sql>
+	
+	<!-- 根据获取单个Manage -->
+	<select id="getById" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM t_manage
+		<include refid="Example_Where_Clause" />
+	</select>
+	
+	
+	  <update id="updateByPrimaryKeySelective" parameterType="com.unionx.wantuo.model.Manage" >
+    update t_manage
+    <set >
+      <if test="login_accounts != null" >
+        login_accounts = #{login_accounts,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="manage_name != null" >
+        manage_name = #{manage_name,jdbcType=VARCHAR},
+      </if>
+      <if test="create_date != null" >
+        create_date = #{create_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="update_date != null" >
+        update_date = #{update_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="last_login_date != null" >
+        last_login_date = #{last_login_date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="status_name != null" >
+        status_name = #{status_name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <insert id="insertSelective" parameterType="com.unionx.wantuo.model.Manage" >
+    insert into t_manage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="login_accounts != null" >
+        login_accounts,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="manage_name != null" >
+        manage_name,
+      </if>
+      <if test="create_date != null" >
+        create_date,
+      </if>
+      <if test="update_date != null" >
+        update_date,
+      </if>
+      <if test="last_login_date != null" >
+        last_login_date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="status_name != null" >
+        status_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="login_accounts != null" >
+        #{login_accounts,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="manage_name != null" >
+        #{manage_name,jdbcType=VARCHAR},
+      </if>
+      <if test="create_date != null" >
+        #{create_date,jdbcType=DATE},
+      </if>
+      <if test="update_date != null" >
+        #{update_date,jdbcType=DATE},
+      </if>
+      <if test="last_login_date != null" >
+        #{last_login_date,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="status_name != null" >
+        #{status_name,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+  <select id="findByLoginAccounts" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * FROM t_manage where login_accounts=#{login_accounts}
+  </select>
+</mapper>

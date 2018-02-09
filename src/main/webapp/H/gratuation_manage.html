@@ -1,0 +1,431 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="../css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="../css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="../lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
+<link href="../lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>毕业管理</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 系部/班主任 <span class="c-gray en">&gt;</span> 毕业管理 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<form action="" method="post" class="form form-horizontal" id="form-article-add">
+	<div class="text-c mt-10"> 
+    <span class="select-box inline">
+		<select name="" class="select">
+			<option value="0">全部班级</option>
+			<option value="1">班级一</option>
+			<option value="2">班级二</option>
+            <option value="3">班级三</option>
+			<option value="4">班级四</option>
+		</select>
+        <select name="" class="select">
+			<option value="0">全部状态</option>
+			<option value="1">在读</option>
+			<option value="2">待实习</option>
+            <option value="3">实习中</option>
+			<option value="4">已就业</option>
+		</select>
+		</span> 
+		学生名称：
+		<input type="text" name="" id="" placeholder=" 学生名称" style="width:250px" class="input-text">
+		<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 检索</button>
+        <button type="submit" class="btn btn-secondary radius" id="Button2" name=""><i class="Hui-iconfont">&#xe6a6;</i> 重置</button>
+	</div>
+
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
+        <span class="l">
+         <a class="btn btn-primary radius ml-5" data-toggle="modal" href="#myModal0" ><i class="Hui-iconfont">&#xe6df;</i> 实习单位鉴定表录入</a> 
+                <a class="btn btn-primary radius ml-5" data-toggle="modal" href="#myModal1" ><i class="Hui-iconfont">&#xe6df;</i> 就业单位鉴定书录入</a> 
+              <a class="btn btn-primary radius ml-5" data-toggle="modal" href="#myModal2" ><i class="Hui-iconfont">&#xe6df;</i>实训答辩成绩录入</a> 
+                <a class="btn btn-primary radius ml-5" data-toggle="modal" href="#myModal3" ><i class="Hui-iconfont">&#xe6df;</i> 结业考试成绩录入</a>
+                <a class="btn btn-warning radius ml-5"><i class="Hui-iconfont">&#xe644;</i> 导出</a>
+        </span> 
+        <span class="r">共有数据：<strong>54</strong> 条</span> 
+    </div>
+    
+	<div class="row cl">
+       <div class="formControls">
+            <table class="table table-border table-bordered table-bg table-hover table-sort">
+                <thead>
+                    <tr class="text-c">
+                    <th width="20"><input type="checkbox" name="" value=""></th>
+                        <th width="60">学号</th>
+                        <th width="60">姓名</th>
+                        <th width="80">专业</th>
+                        <th width="80">班级</th> 
+                        <th width="75">状态</th>
+                        <th width="75">结业/毕业证书</th>
+                        <th width="75">结业考试成绩</th>
+                        <th width="75">实训答辩成绩</th>
+                        <th width="120">实习单位鉴定表</th>
+                        <th width="120">就业单位鉴定书</th>
+                        <th width="50">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="text-c"><th><input type="checkbox" name="" value=""></th>
+                        <td>150000001</td>
+                        <td><span class="c">吴一</span></td>
+                        <td>计算机信息技术</td>
+                        <td>班级一</td>
+                        <td><span class="c">在读</span></td>
+                        <td>未发放</td>
+                        <td>无</td>
+                        <td>无</td>
+                        <td>无</td>
+                        <td>无</td>
+                        <td><span class="c"><a style="text-decoration:none" class="ml-5" data-toggle="modal" href="#myModal7" title="详情"><i class="Hui-iconfont">&#xe665;</i></a><a style="text-decoration:none" class="ml-5" data-toggle="modal" href="#myModal8" title="修改"><i class="Hui-iconfont">&#xe6df;</i></a></span></td>
+                    </tr>
+                    <tr class="text-c"><th><input type="checkbox" name="" value=""></th>
+                        <td>150000002</td>
+                        <td><span class="c">倪二</span></td>
+                        <td>计算机信息技术</td>
+                        <td>班级二</td>
+                        <td><span class="c">已结业</span></td>
+                        <td>已发放</td>
+                        <td>90</td>
+                        <td>95</td>
+                        <td>北京云台软件有限公司</td>
+                        <td>北京云台软件有限公司</td>
+                        <td><span class="c"><a style="text-decoration:none" class="ml-5" data-toggle="modal" href="#myModal7" title="详情"><i class="Hui-iconfont">&#xe665;</i></a><a style="text-decoration:none" class="ml-5" data-toggle="modal" href="#myModal8" title="修改"><i class="Hui-iconfont">&#xe6df;</i></a></span></td>
+                    </tr>
+                    <tr class="text-c"><th><input type="checkbox" name="" value=""></th>
+                        <td>150000003</td>
+                        <td><span class="c">张三</span></td>
+                        <td>计算机信息技术</td>
+                        <td>班级三</td>
+                        <td><span class="label label-success radius">实习中</span></td>
+                        <td>未发放</td>
+                        <td>无</td>
+                        <td>85</td>
+                        <td>北京云台软件有限公司</td>
+                        <td>无</td>
+                       <td><span class="c"><a style="text-decoration:none" class="ml-5" data-toggle="modal" href="#myModal7" title="详情"><i class="Hui-iconfont">&#xe665;</i></a><a style="text-decoration:none" class="ml-5" data-toggle="modal" href="#myModal8" title="修改"><i class="Hui-iconfont">&#xe6df;</i></a></span></td>
+                    </tr>
+                    <tr class="text-c"><th><input type="checkbox" name="" value=""></th>
+                        <td>150000004</td>
+                        <td><span class="c">李四</span></td>
+                        <td>计算机信息技术</td>
+                        <td>班级四</td>
+                        <td><span class="label label-warning radius">待实习</span></td>
+                         <td>未发放</td>
+                        <td>无</td>
+                        <td>85</td>
+                        <td>无</td>
+                        <td>无</td>
+                        <td><span class="c"><a style="text-decoration:none" class="ml-5" data-toggle="modal" href="#myModal7" title="详情"><i class="Hui-iconfont">&#xe665;</i></a><a style="text-decoration:none" class="ml-5" data-toggle="modal" href="#myModal8" title="修改"><i class="Hui-iconfont">&#xe6df;</i></a></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <div id="myModal0" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-header">
+            <h3 id="myModalLabel">实习单位鉴定表录入</h3><a class="close" data-dismiss="modal" aria-hidden="true" href="javascript:void();">×</a>
+         </div>
+         
+         <div class="modal-body">
+             <div class="row cl mb-10">
+                 <label class="form-label col-4 text-r"><span class="c-red">*</span>班级选择：</label>
+                  <div class="formControls col-8">
+                      <span class="select-box inline">
+                      <select name="" class="select" style="width:280px;">
+                          <option value="0">班级一</option>
+                          <option value="1">班级二</option>
+                          <option value="2">班级三</option>
+                          <option value="3">班级四</option>
+                      </select>
+                      </span> 
+                  </div>
+              </div>
+              <div class="row cl mb-10">
+                  <label class="form-label col-4 text-r"><span class="c-red">*</span>实习单位鉴定信息：</label>
+                  <div class="formControls col-8">
+                  <input class="input-text upload-url" type="text" name="uploadfile-2" id="uploadfile-2" readonly  datatype="*" nullmsg="请选择学生实习单位鉴定表！" style="width:200px">
+                        <a href="javascript:void();" class="btn btn-primary upload-btn"><i class="Hui-iconfont">&#xe642;</i> 浏览文件</a>
+                </div>
+              </div>
+            <div class="row cl">
+               <span class="c">
+                   <p class="c-warning">
+                        <b>备注：</b><br/>实习单位鉴定表需以图片方式上传，并且以学生学号命名。可多条一起导入，均需满足以上规则。
+                   </p>
+               </span>
+            </div>                          
+          </div>
+          <div class="modal-footer">
+         <button class="btn btn-primary">确定</button> <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+         </div>
+    </div>     
+
+
+	<div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+         <div class="modal-header">
+            <h3 id="myModalLabel">就业单位鉴定书录入</h3><a class="close" data-dismiss="modal" aria-hidden="true" href="javascript:void();">×</a>
+         </div>
+     <div class="modal-body">
+       <div class="row cl mb-10">
+             <label class="form-label col-4 text-r"><span class="c-red">*</span>班级选择：</label>
+              <div class="formControls col-8">
+                  <span class="select-box inline">
+                  <select name="" class="select" style="width:280px;">
+                      <option value="0">班级一</option>
+                      <option value="1">班级二</option>
+                      <option value="2">班级三</option>
+                      <option value="3">班级四</option>
+                  </select>
+                  </span> 
+              </div>
+       </div>
+       <div class="row cl mb-10">
+          <label class="form-label col-4 text-r"><span class="c-red">*</span>就业单位鉴定信息：</label>
+          <div class="formControls col-8">
+          
+          <input class="input-text upload-url" type="text" name="uploadfile-2" id="uploadfile-2" readonly  datatype="*" nullmsg="请选择学生就业单位鉴定书！" style="width:200px">
+			<a href="javascript:void();" class="btn btn-primary upload-btn"><i class="Hui-iconfont">&#xe642;</i> 浏览文件</a>
+		 </div>
+       </div>
+        <div class="row cl">
+           <span class="c">
+               <p class="c-warning">
+                    <b>备注：</b><br/>就业单位鉴定书需以图片方式上传，并且以学生学号命名。可多条一起导入，均需满足以上规则。
+               </p>
+           </span>
+        </div>           
+     </div>
+      <div class="modal-footer">
+     <button class="btn btn-primary">确定</button> <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+     </div>
+    </div>     
+
+
+    <div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal-header">
+        <h3 id="myModalLabel">实训答辩成绩录入</h3><a class="close" data-dismiss="modal" aria-hidden="true" href="javascript:void();">×</a>
+     </div>
+     <div class="modal-body">
+        <div class="row cl mb-10">
+             <label class="form-label col-4 text-r"><span class="c-red">*</span>班级选择：</label>
+              <div class="formControls col-8">
+                  <span class="select-box inline">
+                  <select name="" class="select"  style="width:280px;">
+                      <option value="0">班级一</option>
+                      <option value="1">班级二</option>
+                      <option value="2">班级三</option>
+                      <option value="3">班级四</option>
+                  </select>
+                  </span> 
+              </div>
+            </div>
+      <div class="row cl mb-10">
+          <label class="form-label col-4 text-r"><span class="c-red">*</span>实训答辩成绩信息：</label>
+          <div class="formControls col-8">
+             <input class="input-text upload-url" type="text" name="uploadfile-2" id="uploadfile-2" readonly  datatype="*" nullmsg="请选择学生实训答辩成绩Excel表！" style="width:200px;">
+             <a href="javascript:void();" class="btn btn-primary upload-btn" style="width:95px;"><i class="Hui-iconfont">&#xe642;</i> 浏览文件</a>
+            </div>
+            <div class="row cl">
+               <span class="c">
+                   <p class="c-warning">
+                        <b>备注：</b><br/>实训答辩成绩需以Excel方式导入，Excel支持03和07以上版本，导入时需满足：<br/>1） 只导入一个Excel，如果有多科成绩，每科成绩以Excel页方式存，页名为学科名。<br/>2） Excel每一页都需要前两列为学生学号，学生该学科成绩，第一行为标题，第三列及之后数据不处理。
+                   </p>
+               </span>
+            </div>
+     </div>
+      <div class="modal-footer">
+     <button class="btn btn-primary">确定</button> <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+     </div>
+	</div>     
+
+
+	<div id="myModal3" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+     <div class="modal-header">
+        <h3 id="myModalLabel">结业考试成绩录入</h3><a class="close" data-dismiss="modal" aria-hidden="true" href="javascript:void();">×</a>
+     </div>
+     <div class="modal-body">
+          <div class="row cl mb-10">
+             <label class="form-label col-4 text-r"><span class="c-red">*</span>班级选择：</label>
+            <div class="formControls col-8">
+                <span class="select-box inline">
+                <select name="" class="select"  style="width:280px;">
+                    <option value="0">班级一</option>
+                    <option value="1">班级二</option>
+                    <option value="2">班级三</option>
+                    <option value="3">班级四</option>
+                </select>
+                </span> 
+            </div>
+        </div>
+       <div class="row cl mb-10">
+        <label class="form-label col-4 text-r"><span class="c-red">*</span>结业考试成绩信息：</label>
+        <div class="formControls col-8">
+          <input class="input-text upload-url" type="text" name="uploadfile-2" id="uploadfile-2" readonly  datatype="*" nullmsg="请选择学生实训答辩成绩Excel表！" style="width:200px;">
+			<a href="javascript:void();" class="btn btn-primary upload-btn" style="width:95px;"><i class="Hui-iconfont">&#xe642;</i> 浏览文件</a>
+		</div>
+        </div>
+        <div class="row cl">
+           <span class="c">
+               <p class="c-warning">
+                    <b>备注：</b><br/>结业考试成绩需以Excel方式导入，Excel支持03和07以上版本，导入时需满足：<br/>1） 只导入一个Excel，如果有多科成绩，每科成绩以Excel页方式存，页名为学科名。<br/>2） Excel每一页都需要前两列为学生学号，学生该学科成绩，第一行为标题，第三列及之后数据不处理。
+               </p>
+           </span>
+        </div>
+     </div>
+      <div class="modal-footer">
+     <button class="btn btn-primary">确定</button> <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+     </div>
+</div>        
+
+
+<div id="myModal7" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-width="600">
+     <div class="modal-header">
+        <h3 id="myModalLabel">学生毕业相关信息查看</h3><a class="close" data-dismiss="modal" aria-hidden="true" href="javascript:void();">×</a>
+     </div>
+     <div class="modal-body">
+         <b> <span class="label label-success radius">吴一</span>(计算机信息技术/班级一) </b>
+        <div class="row cl mt-20">
+           <label class="form-label col-3  text-r">结业/毕业证书：</label>
+            <div class="formControls col-9">
+               <label class="form-label col-3  text-l">已发放</label>
+            </div>
+        </div>
+        <div class="row cl mt-10">
+           <label class="form-label col-3  text-r">证书发放时间：</label>
+            <div class="formControls col-9">
+               <label class="form-label col-3  text-l">2015-9-20</label>
+            </div>
+        </div>
+        <div class="row cl mt-10">
+           <label class="form-label col-3  text-r">结业考试成绩：</label>
+            <div class="formControls col-9">
+               <label class="form-label col-3  text-l">95</label>
+            </div>
+        </div>
+        <div class="row cl mt-10">
+           <label class="form-label col-3  text-r">实训答辩成绩：</label>
+            <div class="formControls col-9">
+               <label class="form-label col-3  text-l">95</label>
+            </div>
+        </div>
+         <div class="row cl mt-10">
+           <label class="form-label col-3  text-r">实习单位鉴定表：</label>
+            <div class="formControls col-9">
+               <div style="width:400px;height:300px;border:#ccc solid 1px;">图片丢失了~</div>
+            </div>
+        </div>
+         <div class="row cl mt-10">
+           <label class="form-label col-3  text-r">就业单位鉴定书：</label>
+            <div class="formControls col-9">
+              <div style="width:400px;height:300px;border:#ccc solid 1px;">图片丢失了~</div>
+            </div>
+        </div>
+     </div>
+      <div class="modal-footer">
+     <button class="btn btn-primary">确定</button> <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+     </div>
+</div> 
+
+<div id="myModal8" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-width="600">
+     <div class="modal-header">
+        <h3 id="myModalLabel">学生毕业相关信息编辑</h3><a class="close" data-dismiss="modal" aria-hidden="true" href="javascript:void();">×</a>
+     </div>
+     <div class="modal-body">
+         <b> <span class="label label-success radius">吴一</span>(计算机信息技术/班级一) </b>
+        <div class="row cl mt-20">
+           <label class="form-label col-4  text-r"><span class="c-red">*</span>结业/毕业证书：</label>
+            <div class="formControls">
+                <span class="select-box inline">
+                    <select name="" class="select" style="width:280px;">
+                        <option value="0">已发放</option>
+                        <option value="1">未发放</option>
+                    </select>
+                    </span> 
+            </div>
+        </div>
+        <div class="row cl mt-10">
+             <label class="form-label col-4 text-r"><span class="c-red">*</span>证书发放时间：</label>
+            <div class="formControls">
+                <input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}'})" id="logmin" class="input-text Wdate" style="width:300px;">
+            </div>
+        </div>
+        
+        <div class="row cl mt-10">
+           <label class="form-label col-4  text-r"><span class="c-red">*</span>结业考试成绩：</label>
+            <div class="formControls">
+               <input type="text" id="website-description" placeholder="结业考试成绩" value="" class="input-text" style="width:300px;">
+            </div>
+        </div>
+        <div class="row cl mt-10">
+           <label class="form-label col-4  text-r"><span class="c-red">*</span>实训答辩成绩：</label>
+            <div class="formControls">
+              <input type="text" id="website-description" placeholder="实训答辩成绩" value="" class="input-text" style="width:300px;">
+            </div>
+        </div>
+         <div class="row cl mt-10">
+           <label class="form-label col-4  text-r"><span class="c-red">*</span>实习单位鉴定表：</label>
+            <div class="formControls">
+               <input class="input-text upload-url" type="text" name="uploadfile-2" id="uploadfile-2" readonly  datatype="*" nullmsg="请选择实习单位鉴定表扫描件;图片形式" style="width:200px">
+                <a href="javascript:void();" class="btn btn-primary upload-btn"><i class="Hui-iconfont">&#xe642;</i> 浏览文件</a>
+            </div>
+        </div>
+         <div class="row cl mt-10">
+           <label class="form-label col-4  text-r"><span class="c-red">*</span>就业单位鉴定书：</label>
+            <div class="formControls">
+              <input class="input-text upload-url" type="text" name="uploadfile-2" id="uploadfile-2" readonly  datatype="*" nullmsg="请选择实习单位鉴定表扫描件;图片形式" style="width:200px">
+                <a href="javascript:void();" class="btn btn-primary upload-btn"><i class="Hui-iconfont">&#xe642;</i> 浏览文件</a>
+            </div>
+        </div>
+     </div>
+      <div class="modal-footer">
+     <button class="btn btn-primary">确定</button> <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+     </div>
+</div> 
+	</form>
+<script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="../lib/Validform/5.3.2/Validform.min.js"></script> 
+<script type="text/javascript" src="../lib/layer/1.9.3/layer.js"></script> 
+<script type="text/javascript" src="../lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="../lib/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="../js/H-ui.js"></script> 
+<script type="text/javascript" src="../js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="../lib/bootstrap-modal/2.2.4/bootstrap-modalmanager.js"></script>
+<script type="text/javascript" src="../lib/bootstrap-modal/2.2.4/bootstrap-modal.js"></script>
+<script type="text/javascript" src="../lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript">
+$('.table-sort').dataTable({
+	"aaSorting": [[ 0, "desc" ]],//默认第几个排序
+	"bStateSave": true,//状态保存
+	"aoColumnDefs": [
+	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+	  {"orderable":false,"aTargets":[1]}// 制定列不参与排序
+	]
+});
+    $(function () {
+        $('.skin-minimal input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+        $.Huitab("#tab-system .tabBar span", "#tab-system .tabCon", "current", "click", "0");
+    });
+</script>
+</body>
+</html>

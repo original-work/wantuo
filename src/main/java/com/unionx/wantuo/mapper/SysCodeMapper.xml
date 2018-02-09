@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.SysCodeMapper">
+	<resultMap id="BaseResultMap" type="com.unionx.wantuo.model.SysCode">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="parent_id" property="parentId" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="type" property="type" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="status_name" property="statusName" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap id="BaseResultMap2" type="com.unionx.wantuo.model.SysCode">
+		<id column="c.id" property="id" jdbcType="INTEGER" />
+		<result column="c.parent_id" property="parentId" jdbcType="INTEGER" />
+		<result column="c.name" property="name" jdbcType="VARCHAR" />
+		<result column="c.type" property="type" jdbcType="VARCHAR" />
+		<result column="c.status" property="status" jdbcType="INTEGER" />
+		<result column="c.status_name" property="statusName" jdbcType="VARCHAR" />
+		<result column="type_name"  property="typeName" jdbcType="VARCHAR"/>
+	</resultMap>
+	<!-- abner 手机端查询字典表列表 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="type != null and type != ''">
+				and type = #{type}
+			</if>
+			<if test="parentId != null and parentId != ''">
+				and parent_id = #{parentId}
+			</if>
+		    <if test="status != null and status != ''">
+				and status = #{status}
+			</if>
+			<if test="id != null and id != ''">
+				and id = #{id}
+			</if>
+		</trim>
+	</sql>
+	<!-- abner 手机端查询字典表列表 -->
+	<sql id="Base_Column_List">
+		id, parent_id, name, type, status, status_name
+	</sql>
+	<!-- abner 手机端查询字典表列表 -->
+	<select id="getCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM sys_code
+		<include refid="Example_Where_Clause" />
+	</select>
+    <!-- abner 手机端查询字典表列表 -->
+	<select id="queryByList" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List"/>
+		FROM sys_code
+		<include refid="Example_Where_Clause" />
+	</select>
+	
+	
+	<select id="adminSelect" resultMap="BaseResultMap2" parameterType="Object">
+		select c.id,c.name,sc.name as type_name from sys_code c 
+		join sys_code sc on c.type=sc.id 
+		where 1=1 
+		<if test="name !=null and name !='' ">
+			and sc.name LIKE CONCAT('%',#{name},'%')
+		</if>
+		  limit #{pageIndex},#{pageSize}
+	</select>
+	
+	<select id="adminSelectCount" parameterType="Object" resultType="java.lang.Integer">
+		select COUNT(0) from sys_code c 
+			join sys_code sc on c.type=sc.id 
+			where 1=1 
+			<if test="name !=null and name !='' ">
+			and sc.name=#{name}
+			</if>
+	</select>
+	
+	<delete id="deleteById" parameterType="Object">
+		delete from sys_code where id=#{id}
+	</delete>
+	 <update id="updateByPrimaryKeySelective" parameterType="com.unionx.wantuo.model.SysCode" >
+    update sys_code
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null" >
+        status_name = #{statusName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectParent" resultMap="BaseResultMap">
+  	select * from sys_code where parent_id=0
+  </select>
+  
+  
+  <insert id="insertSelective" parameterType="com.unionx.wantuo.model.SysCode" >
+    insert into sys_code
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !='' " >
+        id,
+      </if>
+      <if test="parentId != null  and parentId !='' " >
+        parent_id,
+      </if>
+      <if test="name != null and name !='' " >
+        name,
+      </if>
+      <if test="type != null and type !='' " >
+        type,
+      </if>
+      <if test="status != null and status !='' " >
+        status,
+      </if>
+      <if test="statusName != null and statusName !='' " >
+        status_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !='' " >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null and parentId !='' " >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null and name !='' " >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null and type !='' " >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null and status !='' " >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null and statusName !='' " >
+        #{statusName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>

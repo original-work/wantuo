@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.TeacherMapper" >
+  <resultMap id="BaseResultMap" type="com.unionx.wantuo.model.Teacher" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="login_accounts" property="loginAccounts" jdbcType="VARCHAR" />
+    <result column="organization_accounts" property="organizationAccounts" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="status_name" property="statusName" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, login_accounts, organization_accounts, status, status_name, create_date
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_teacher
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_teacher
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.unionx.wantuo.model.Teacher" >
+    insert into t_teacher (id, login_accounts, organization_accounts, 
+      status, status_name, create_date
+      )
+    values (#{id,jdbcType=INTEGER}, #{loginAccounts,jdbcType=VARCHAR}, #{organizationAccounts,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{statusName,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.unionx.wantuo.model.Teacher" >
+    insert into t_teacher
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !='' " >
+        id,
+      </if>
+      <if test="loginAccounts != null and loginAccounts!='' " >
+        login_accounts,
+      </if>
+      <if test="organizationAccounts != null and organizationAccounts !='' " >
+        organization_accounts,
+      </if>
+      <if test="status != null and status !='' " >
+        status,
+      </if>
+      <if test="statusName != null and statusName !='' " >
+        status_name,
+      </if>
+      <if test="createDate != null and createDate !='' " >
+        create_date,
+      </if>
+      <if test="name != null and name !='' " >
+        name,
+      </if>
+      <if test="phone != null and phone !='' " >
+        phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !='' " >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginAccounts != null and loginAccounts!='' " >
+        #{loginAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationAccounts != null and organizationAccounts!='' " >
+        #{organizationAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null and status !='' " >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null and statusName!='' " >
+        #{statusName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null and createDate !='' " >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="name != null and name !='' " >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null and phone !='' " >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.unionx.wantuo.model.Teacher" >
+    update t_teacher
+    <set >
+      <if test="loginAccounts != null" >
+        login_accounts = #{loginAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationAccounts != null" >
+        organization_accounts = #{organizationAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null" >
+        status_name = #{statusName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.unionx.wantuo.model.Teacher" >
+    update t_teacher
+    set login_accounts = #{loginAccounts,jdbcType=VARCHAR},
+      organization_accounts = #{organizationAccounts,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      status_name = #{statusName,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findByLoginAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from t_teacher where login_accounts=#{LoginAccounts} and status = 2
+  </select>
+  
+  <!-- abner 手机端获取机构下的班主任 -->
+	<sql id="Base_Column_List_A">
+		t.id,t.login_accounts,t.organization_accounts,t.status,t.status_name,t.create_date,t.phone,t.name,l.password
+	</sql>
+    <!-- abner 手机端获取机构下的班主任 -->
+	<select id="getCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM t_teacher t join t_login l on t.login_accounts = l.login_accounts 
+		where 1=1
+		<if test="organizationAccounts != null and organizationAccounts !=''">
+		 and t.organization_accounts = #{organizationAccounts}
+		</if>
+		<if test="status != null and status !=''">
+		 and t.status = #{status}
+		</if>
+	</select>
+    <!-- abner 手机端获取机构下的班主任 -->
+	<select id="queryByList" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List_A" />
+		FROM t_teacher t join t_login l on t.login_accounts = l.login_accounts
+		where 1=1
+		<if test="organizationAccounts != null and organizationAccounts !=''">
+		 and t.organization_accounts = #{organizationAccounts}
+		</if>
+		<if test="status != null and status !=''">
+		 and t.status = #{status}
+		</if>
+		<if test="limit != null and limit != ''">
+			${limit}
+		</if>
+	</select>
+	
+    <update id="update">
+    update t_teacher
+    <set>    
+      <if test="status != null and status != ''">
+      status=#{status,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null and phone != ''">
+      phone=#{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null and name != ''">
+      name=#{name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER} 
+    </update>
+</mapper>

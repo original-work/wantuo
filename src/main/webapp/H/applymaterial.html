@@ -1,0 +1,255 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="../css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="../css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="../lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
+<link href="../lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+    <title>原料申请(开菜单)</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 系部/班主任 <span class="c-gray en">&gt;</span> 日常管理  <span class="c-gray en">&gt;</span> 原料申请(开菜单) <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<form action="" method="post" class="form form-horizontal" id="form-article-add">
+        <div class="text-c mt-10"> 
+                <span class="select-box inline">
+                    <select name="" class="select">
+                        <option value="0">全部班级</option>
+                        <option value="1">班级一</option>
+                        <option value="2">班级二</option>
+                        <option value="3">班级三</option>
+                        <option value="4">班级四</option>
+                    </select>
+                </span> 
+                申请标题：
+                <input type="text" name="" id="" placeholder=" 申请标题" style="width:250px" class="input-text">
+                <button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 检索</button>
+                <button type="submit" class="btn btn-secondary radius" id="Button2" name=""><i class="Hui-iconfont">&#xe6a6;</i> 重置</button>
+        </div>
+        
+        <div class="cl pd-5 bg-1 bk-gray mt-20"> 
+            <span class="l">
+                <a class="btn btn-primary radius" data-toggle="modal" href="#myModal" ><i class="Hui-iconfont">&#xe600;</i> 添加申请</a> 
+                 <a class="btn btn-primary radius" data-toggle="modal" href="#myModal0" ><i class="Hui-iconfont">&#xe6df;</i> 查看申请</a> 
+                 <a class="btn btn-warning radius"><i class="Hui-iconfont">&#xe68f;</i>撤回申请</a>
+                 <a class="btn btn-warning radius"><i class="Hui-iconfont">&#xe644;</i>导出</a>
+            </span> 
+            <span class="r">共有数据：<strong>54</strong> 条</span> 
+        </div>
+        <div class="row cl">
+            <div class="formControls">
+                <table class="table table-border table-bordered table-bg table-hover table-sort">
+                <thead>
+                    <tr class="text-c">
+                        <th width="20"><input type="checkbox" name="" value=""></th>
+                        <th width="60">班级</th>
+                        <th width="150">申请标题</th>
+                        <th width="80">原料名称</th>
+                        <th width="40"> 原料数量</th>
+                        <th width="80">预计使用时间</th>
+                        <th width="80">申请时间</th>
+                        <th width="80"> 审批状态</th>
+                        <th width="80">备注</th>
+                        <th width="50">操作</th>
+                    </tr>
+                </thead>
+                 <tbody>
+                    <tr class="text-c">
+                        <td><input type="checkbox" value="" name=""></td>
+                        <td>班级一</td>
+                        <td>申请大厨一班xxx菜配料20份</td>
+                        <td>xxx菜配料</td>
+                        <td>20</td>
+                        <td>2015-9-20 10:20:00</td>
+                        <td>2015-9-21 10:20:00</td>
+                        <td>已通过</td>
+                        <td>无</td>
+                        <td><span class="c"><a style="text-decoration:none" class="ml-5" data-toggle="modal" href="#myModal0" title="详情"><i class="Hui-iconfont">&#xe665;</i></a></span></td>
+                    </tr>
+                    <tr class="text-c">
+                        <td><input type="checkbox" value="" name=""></td>
+                        <td>班级一</td>
+                        <td>申请大厨一班xxx菜配料20份</td>
+                        <td>xxx菜配料</td>
+                        <td>20</td>
+                        <td>2015-9-20 10:20:00</td>
+                        <td>2015-9-21 10:20:00</td>
+                        <td><span class="label label-warning radius">未通过</span></td>
+                        <td>无</td>
+                        <td><span class="c"><a style="text-decoration:none" class="ml-5" data-toggle="modal" href="#myModal0" title="详情"><i class="Hui-iconfont">&#xe665;</i></a></span></td>
+                    </tr>
+                 </tbody>
+              </table>   
+            </div>
+        </div>
+        
+        <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div class="modal-header">
+                <h3 id="myModalLabel">添加原料申请(开菜单)</h3><a class="close" data-dismiss="modal" aria-hidden="true" href="javascript:void();">×</a>
+             </div>
+             
+             <div class="modal-body">
+               <div class="row cl mt-10"> 
+                    <label class="form-label col-3 text-r"><span class="c-red">*</span>申请标题：</label>
+                    <div class="formControls col-8">
+                    <input type="text" name="" id="" placeholder=" 申请标题" style="width:300px" class="input-text">
+                    </div>
+                </div>   
+                 <div class="row cl mt-10"> 
+                    <label class="form-label col-3 text-r"><span class="c-red">*</span>班级名称：</label>
+                    <div class="formControls col-8">
+                    <select name="" class="select">
+                        <option value="0">全部班级</option>
+                        <option value="1">班级一</option>
+                        <option value="2">班级二</option>
+                        <option value="3">班级三</option>
+                        <option value="4">班级四</option>
+                    </select>
+                    </div>
+                 </div>
+                 
+               <div class="row cl mt-10"> 
+                    <label class="form-label col-3 text-r"><span class="c-red">*</span>原料名称：</label>
+                    <div class="formControls col-8">
+                    <input type="text" name="" id="" placeholder=" 原料名称" style="width:200px" class="input-text">
+                    <button name="" id="" class="btn btn-success" style="width:95px"><i class="Hui-iconfont">&#xe665;</i> 检索</button>
+                    </div>
+                </div>   
+                <div class="row cl mt-10"> 
+                    <label class="form-label col-3 text-r"><span class="c-red">*</span>原料数量：</label>
+                    <div class="formControls col-8">
+                    <input type="text" name="" id="" placeholder=" 数字" style="width:300px;" class="input-text">
+                    </div>
+                </div>   
+                <div class="row cl mt-10">
+                    <label class="form-label col-3 text-r"><span class="c-red">*</span>预计使用时间：</label>
+                    <div class="formControls col-8">
+                      <input type="text" onfocus="WdatePicker({maxDate:'#F{$dp.$D(\'logmax\')||\'%y-%M-%d\'}'})" id="logmin" class="input-text Wdate" style="width:300px;">
+                  </div>
+                </div>
+                <div class="row cl mt-10 mb-10">
+                    <label class="form-label col-3 text-r">备注信息：</label>
+                    <div class="formControls col-8">
+                        <textarea class="textarea" style="width:300px;"></textarea>
+                    </div>
+                </div>
+             </div>
+              <div class="modal-footer">
+             <button class="btn btn-primary">确定</button> <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+             </div>
+        </div>
+        
+        <div id="myModal0" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div class="modal-header">
+                <h3 id="myModalLabel">查看原料申请(开菜单)详情</h3><a class="close" data-dismiss="modal" aria-hidden="true" href="javascript:void();">×</a>
+             </div>
+             <div class="modal-body">
+                 <div class="row cl mt-10"> 
+                    <label class="form-label col-3 text-r">申请标题：</label>
+                    <div class="formControls col-8">
+                    <label class="form-label">申请大厨一班xxx菜配料20份</label>
+                    </div>
+                </div>   
+                 <div class="row cl mt-10"> 
+                    <label class="form-label col-3 text-r">班级名称：</label>
+                    <div class="formControls col-8">
+                    <label class="form-label">班级一</label>
+                    </div>
+                 </div>  
+               <div class="row cl mt-10"> 
+                    <label class="form-label col-3 text-r">原料名称：</label>
+                    <div class="formControls col-8">
+                    <label class="form-label">xxx菜</label>
+                    </div>
+                </div>   
+                <div class="row cl mt-10"> 
+                    <label class="form-label col-3 text-r">原料数量：</label>
+                    <div class="formControls col-8">
+                    <label class="form-label">20</label>
+                    </div>
+                </div>   
+                <div class="row cl mt-10">
+                    <label class="form-label col-3 text-r">预计使用时间：</label>
+                    <div class="formControls col-8">
+                   <label class="form-label">2015-9-21 10:20:00</label>
+                    </div>
+                </div>
+                 <div class="row cl mt-10">
+                    <label class="form-label col-3 text-r">申请时间：</label>
+                    <div class="formControls col-8">
+                   <label class="form-label">2015-9-20 10:20:00</label>
+                    </div>
+                </div>
+                <div class="row cl mt-10">
+                    <label class="form-label col-3 text-r">审批状态：</label>
+                    <div class="formControls col-8">
+                   <label class="form-label">已审批</label>
+                    </div>
+                </div>
+                <div class="row cl mt-10">
+                    <label class="form-label col-3 text-r">审批人：</label>
+                    <div class="formControls col-8">
+                   <label class="form-label">习大大</label>
+                    </div>
+                </div>
+                <div class="row cl mt-10">
+                    <label class="form-label col-3 text-r">审批时间：</label>
+                    <div class="formControls col-8">
+                   <label class="form-label">2015-9-20 10:20:00</label>
+                    </div>
+                </div>
+                <div class="row cl mt-10 mb-10">
+                    <label class="form-label col-3 text-r">备注信息：</label>
+                    <div class="formControls col-8">
+                        <label class="form-label">无</label>
+                    </div>
+                </div>
+             </div>
+              <div class="modal-footer">
+             <button class="btn btn-primary">确定</button> <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+             </div>
+        </div>
+	</form>
+<script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="../lib/Validform/5.3.2/Validform.min.js"></script> 
+<script type="text/javascript" src="../lib/layer/1.9.3/layer.js"></script> 
+<script type="text/javascript" src="../lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="../lib/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="../js/H-ui.js"></script> 
+<script type="text/javascript" src="../js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="../lib/bootstrap-modal/2.2.4/bootstrap-modalmanager.js"></script>
+<script type="text/javascript" src="../lib/bootstrap-modal/2.2.4/bootstrap-modal.js"></script>
+<script type="text/javascript" src="../lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript">
+$('.table-sort').dataTable({
+	"aaSorting": [[ 0, "desc" ]],//默认第几个排序
+	"bStateSave": true,//状态保存
+	"aoColumnDefs": [
+	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+	  {"orderable":false,"aTargets":[1]}// 制定列不参与排序
+	]
+});
+    $(function () {
+        $('.skin-minimal input').iCheck({
+            checkboxClass: 'icheckbox-blue',
+            radioClass: 'iradio-blue',
+            increaseArea: '20%'
+        });
+        $.Huitab("#tab-system .tabBar span", "#tab-system .tabCon", "current", "click", "0");
+    });
+</script>
+</body>
+</html>

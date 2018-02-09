@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.OnePushMapper">
+	<resultMap id="BaseResultMap" type="com.unionx.wantuo.model.OnePush">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="push_login_accounts" property="push_login_accounts" jdbcType="VARCHAR" />
+		<result column="login_accounts" property="login_accounts" jdbcType="VARCHAR" />
+		<result column="create_date" property="create_date" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="status_name" property="status_name" jdbcType="VARCHAR" />
+		<result column="push_details" property="push_details" jdbcType="VARCHAR" />
+		<result column="push_name" property="push_name" jdbcType="VARCHAR" />
+		<result column="push_type" property="push_type" jdbcType="INTEGER" />
+	</resultMap>
+	<!-- 移动端查询推送记录 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="login_accounts != null and login_accounts != ''">
+				and login_accounts = #{login_accounts}
+			</if>
+			<if test="push_login_accounts != null and push_login_accounts != ''">
+				and push_login_accounts = #{push_login_accounts}
+			</if>
+			<if test="push_name != null and push_name != ''">
+				and push_name = #{push_name}
+			</if>
+			<if test="push_type != null and push_type != ''">
+				and push_type = #{push_type}
+			</if>
+		</trim>
+	</sql>
+	<!-- 移动端查询推送记录 -->
+	<sql id="Base_Column_List">
+		id,push_login_accounts,login_accounts,left(create_date,19) as create_date,status,push_details,push_name,push_type
+	</sql>
+	<!-- 移动端查询推送总条数 -->
+	<select id="getCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM t_one_push
+		<include refid="Example_Where_Clause" />
+	</select>
+	<!-- 移动端查询推送记录 -->
+	<select id="queryByList" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List" /> FROM t_one_push
+		<include refid="Example_Where_Clause" />
+		order by create_date DESC
+		<if test="limit != null and limit != ''">
+			${limit}
+		</if>
+	</select>
+    <!-- 移动端查询未读条数 -->
+	<sql id="Example_Where_Clause_U">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="login_accounts != null and login_accounts != ''">
+				and login_accounts = #{login_accounts}
+			</if>
+			<if test="push_login_accounts != null and push_login_accounts != ''">
+				and push_login_accounts = #{push_login_accounts}
+			</if>
+			<if test="push_name != null and push_name != ''">
+				and push_name = #{push_name}
+			</if>
+			<if test="push_type != null and push_type != ''">
+				and push_type = #{push_type}
+			</if>
+			<if test="status != null and status != ''">
+				and status = #{status}
+			</if>
+		</trim>
+	</sql>
+	<!-- 移动端查询未读条数 -->
+	<select id="unreadCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM t_one_push
+		<include refid="Example_Where_Clause_U" />
+	</select>
+	<!-- abner 手机端保存推送记录 -->
+	<insert id="save">
+    insert into t_one_push
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !='' " >
+        id,
+      </if>
+      <if test="push_login_accounts != null and push_login_accounts !='' " >
+        push_login_accounts,
+      </if>
+      <if test="login_accounts != null and login_accounts !='' " >
+        login_accounts,
+      </if>
+      <if test="create_date != null and create_date !='' " >
+        create_date,
+      </if>
+      <if test="status != null and status !='' " >
+        status,
+      </if>
+      <if test="status_name != null and status_name !='' " >
+        status_name,
+      </if>
+      <if test="push_details != null and push_details !='' " >
+        push_details,
+      </if>
+      <if test="push_name != null and push_name !='' " >
+        push_name,
+      </if>
+      <if test="push_type != null and push_type !='' " >
+        push_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !='' " >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="push_login_accounts != null and push_login_accounts != '' " >
+        #{push_login_accounts,jdbcType=VARCHAR},
+      </if>
+      <if test="login_accounts != null and login_accounts != '' " >
+        #{login_accounts,jdbcType=VARCHAR},
+      </if>
+      <if test="create_date != null and create_date !='' " >
+        #{create_date,jdbcType=DATE},
+      </if>
+      <if test="status != null and status !='' " >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="status_name != null and status_name !='' " >
+        #{status_name,jdbcType=VARCHAR},
+      </if>
+      <if test="push_details != null and push_details !='' " >
+        #{push_details,jdbcType=VARCHAR},
+      </if>
+      <if test="push_name != null and push_name !='' " >
+        #{push_name,jdbcType=VARCHAR},
+      </if>
+      <if test="push_type != null and push_type !='' " >
+        #{push_type,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <!-- abner 修改消息状态 -->
+  <update id="update">
+    update t_one_push
+    <set >
+      <if test="status != null  and  status !=''" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="status_name != null  and  status_name !=''" >
+        status_name = #{status_name,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+   <resultMap id="BaseResultMap_A" type="com.unionx.wantuo.model.Login">
+        <result column="login_accounts" property="loginAccounts" jdbcType="VARCHAR" />
+		<result column="c_id" property="cId" jdbcType="VARCHAR" />
+        <result column="device_token" property="deviceToken" jdbcType="VARCHAR" />
+	</resultMap>
+  <!-- abner 根据机构帐号查询家长帐号 -->
+  	<select id="oSelectPushP" resultMap="BaseResultMap_A">
+		SELECT DISTINCT l.login_accounts,l.c_id,l.device_token FROM t_student_school ss
+		join t_student s on ss.student_id = s.id 
+		join t_login l on l.login_accounts = s.login_accounts
+		where ss.organization_accounts = #{push_login_accounts} and l.accounts_type=1
+	</select>
+	<!-- abner 后台查询推送全部机构 -->
+	<select id="manageSelectPushO" resultMap="BaseResultMap_A">
+		SELECT DISTINCT l.login_accounts,l.c_id,l.device_token FROM t_login l 
+		where (l.accounts_type = 2 or l.accounts_type = 3) and status = 2
+	</select>
+	<!-- abner 后台查询推送全部家长 -->
+	<select id="manageSelectPushP" resultMap="BaseResultMap_A">
+		SELECT DISTINCT l.login_accounts,l.c_id,l.device_token FROM t_login l 
+		where l.accounts_type = 1 and status = 2
+	</select>
+	<!-- abner 后台查询推送全部帐号-->
+	<select id="manageSelectPushAll" resultMap="BaseResultMap_A">
+		SELECT DISTINCT l.login_accounts,l.c_id,l.device_token FROM t_login l 
+		where status = 2
+	</select>
+</mapper>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.LoginMapper" >
+  <resultMap id="BaseResultMap" type="com.unionx.wantuo.model.Login" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="login_accounts" property="loginAccounts" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="accounts_type" property="accountsType" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="status_name" property="statusName" jdbcType="VARCHAR" />
+    <result column="c_id" property="cId" jdbcType="VARCHAR" />
+    <result column="device_token" property="deviceToken" jdbcType="VARCHAR" />
+    <result column="phone_uuid" property="phoneUuid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, login_accounts, password, accounts_type, create_date, update_date, status, status_name, 
+    c_id, device_token
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_login
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_login
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.unionx.wantuo.model.Login" >
+    insert into t_login (id, login_accounts, password, 
+      accounts_type, create_date, update_date, 
+      status, status_name, c_id, 
+      device_token)
+    values (#{id,jdbcType=INTEGER}, #{loginAccounts,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{accountsType,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=INTEGER}, #{statusName,jdbcType=VARCHAR}, #{cId,jdbcType=VARCHAR}, 
+      #{deviceToken,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.unionx.wantuo.model.Login" >
+    insert into t_login
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null and id != ''" >
+        id,
+      </if>
+      <if test="loginAccounts != null and loginAccounts != ''" >
+        login_accounts,
+      </if>
+      <if test="password != null and password != ''" >
+        password,
+      </if>
+      <if test="accountsType != null and accountsType != ''" >
+        accounts_type,
+      </if>
+      <if test="createDate != null and createDate != ''" >
+        create_date,
+      </if>
+      <if test="updateDate != null and updateDate != ''" >
+        update_date,
+      </if>
+      <if test="status != null and status != ''" >
+        status,
+      </if>
+      <if test="statusName != null and statusName != ''" >
+        status_name,
+      </if>
+      <if test="cId != null and cId != ''" >
+        c_id,
+      </if>
+      <if test="deviceToken != null and deviceToken != ''" >
+        device_token,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="loginAccounts != null" >
+        #{loginAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="accountsType != null" >
+        #{accountsType,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=DATE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null" >
+        #{statusName,jdbcType=VARCHAR},
+      </if>
+      <if test="cId != null" >
+        #{cId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceToken != null" >
+        #{deviceToken,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.unionx.wantuo.model.Login" >
+    update t_login
+    <set >
+      <if test="password != null and  password !=''" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="accountsType != null and accountsType !='' " >
+        accounts_type = #{accountsType,jdbcType=INTEGER},
+      </if>
+      <if test="createDate != null and createDate !=''" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null and updateDate !='' " >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null and status != ''" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null and statusName !=''" >
+        status_name = #{statusName,jdbcType=VARCHAR},
+      </if>
+      <if test="cId != null and cId !=''" >
+        c_id = #{cId,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceToken != null">
+        device_token = #{deviceToken,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneUuid != null">
+        phone_uuid = #{phoneUuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where login_accounts = #{loginAccounts,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.unionx.wantuo.model.Login" >
+    update t_login
+    set login_accounts = #{loginAccounts,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      accounts_type = #{accountsType,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=INTEGER},
+      status_name = #{statusName,jdbcType=VARCHAR},
+      c_id = #{cId,jdbcType=VARCHAR},
+      device_token = #{deviceToken,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="findToLogin" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	SELECT * from t_login where login_accounts=#{loginAccount} and status != 0
+  </select>
+  <select id="findByloginAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	SELECT * from t_login where login_accounts=#{loginAccount}  and  status != 0
+  </select>
+  <update id="update">
+    update t_login
+    set status = 0
+    where login_accounts = #{loginAccounts,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByLoginAcctounts"  parameterType="Object" >
+  	update t_login set
+  	 <if test="status == null or status == ''" >
+        status =0
+      </if>
+      <if test="status != null and status != ''" >
+        status = #{status,jdbcType=INTEGER}
+      </if>
+   		where login_accounts=#{loginAccount} 
+  </update>
+  
+  <delete id="deleteByLoginAccount" parameterType="Object">
+  	delete from t_login where login_accounts=#{loginAccount} 
+  </delete>
+</mapper>

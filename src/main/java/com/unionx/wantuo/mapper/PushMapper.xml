@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.PushMapper">
+	<resultMap id="BaseResultMap" type="com.unionx.wantuo.model.Push">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="push_object_id" property="pushObjectId" jdbcType="INTEGER" />
+		<result column="push_object" property="pushObject" jdbcType="VARCHAR" />
+		<result column="push_details" property="pushDetails" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="VARCHAR" />
+		<result column="push_name" property="pushName" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 移动端查询推送记录 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id != ''">
+				and id = #{id}
+			</if>
+			<if test="pushObjectId != null and pushObjectId != ''">
+				and push_object_id = #{pushObjectId}
+			</if>
+			<if test="pushObject != null and pushObject != ''">
+				and push_object = #{pushObject}
+			</if>
+			<if test="pushName != null and pushName != ''">
+				and push_name = #{pushName}
+			</if>
+		</trim>
+	</sql>
+	<!-- 移动端查询推送记录 -->
+	<sql id="Base_Column_List">
+		id,push_object_id,push_object,push_details,create_date,push_name
+	</sql>
+	<!-- 移动端查询推送总条数 -->
+	<select id="getCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM t_push
+		<include refid="Example_Where_Clause" />
+	</select>
+	<!-- 移动端查询推送记录 -->
+	<select id="queryByList" resultMap="BaseResultMap">
+		SELECT <include refid="Base_Column_List" /> FROM t_push
+		<include refid="Example_Where_Clause" />\
+		order by create_date DESC
+		<if test="limit != null and limit != ''">
+			${limit}
+		</if>
+	</select>
+    <!-- 移动端查询未读条数 -->
+	<sql id="Example_Where_Clause_U">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="id != null and id != ''">
+				and id = #{id}
+			</if>
+			<if test="pushObjectId != null and pushObjectId != ''">
+				and push_object_id = #{pushObjectId}
+			</if>
+			<if test="pushObject != null and pushObject != ''">
+				and push_object = #{pushObject}
+			</if>
+			<if test="pushName != null and pushName != ''">
+				and push_name = #{pushName}
+			</if>
+			<if test="createDate != null and createDate != ''">
+			<![CDATA[ and create_date >=  #{createDate,jdbcType=DATE}]]>
+			</if>
+		</trim>
+	</sql>
+	<!-- 移动端查询未读条数 -->
+	<select id="unreadCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM t_push
+		<include refid="Example_Where_Clause_U" />
+	</select>
+</mapper>

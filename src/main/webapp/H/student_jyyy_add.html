@@ -1,0 +1,310 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="../css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="../css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="../lib/icheck/icheck.css" rel="stylesheet" type="text/css" />
+<link href="../lib/Hui-iconfont/1.0.1/iconfont.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>学生就业意愿登记</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 系部/班主任 <span class="c-gray en">&gt;</span> 日常管理  <span class="c-gray en">&gt;</span> 学生就业意愿登记 <a class="btn btn-success radius r mr-20" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="pd-20">
+	<form action="" method="post" class="form form-horizontal" id="form-article-add">
+    	<div class="text-c"> 
+                <span class="select-box inline">
+                    <select name="" class="select">
+                        <option value="0">全部班级</option>
+                        <option value="1">班级一</option>
+                        <option value="2">班级二</option>
+                        <option value="3">班级三</option>
+                        <option value="4">班级四</option>
+                    </select>
+                </span> 
+                学生名称：
+                <input type="text" name="" id="" placeholder=" 学生名称" style="width:250px" class="input-text">
+                <button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 检索</button>
+                <button type="submit" class="btn btn-secondary radius" id="Button2" name=""><i class="Hui-iconfont">&#xe6a6;</i> 重置</button>
+        </div>
+        <div class="cl pd-5 bg-1 bk-gray mt-20"> 
+            <span class="l">
+                <a class="btn btn-primary radius" data-toggle="modal" href="#myModal1" ><i class="Hui-iconfont">&#xe600;</i> 添加</a> 
+                <a class="btn btn-primary radius" data-toggle="modal" href="#myModal2" ><i class="Hui-iconfont">&#xe6df;</i> 导入</a> 
+                <a class="btn btn-primary radius" data-toggle="modal" href="#myModal0" ><i class="Hui-iconfont">&#xe6df;</i> 修改</a>                <a class="btn btn-warning radius"><i class="Hui-iconfont">&#xe644;</i>导出</a>
+            </span> 
+            <span class="r">共有数据：<strong>54</strong> 条</span> 
+        </div>
+
+        <div class="row cl">
+          <div class="formControls">
+              <table class="table table-border table-bordered table-bg table-hover table-sort mt-10">
+                  <thead>
+                      <tr class="text-c">
+                      <th width="20"><input type="checkbox" name="" value=""></th>
+                          <th width="60">学号</th>
+                          <th width="60">姓名</th>
+                          <th width="80">专业</th>
+                          <th width="80">班级</th>
+                          <th width="75">意向城市</th>
+                          <th width="75">意向行业</th>
+                          <th width="75">意向职位</th>
+                          <th width="75">意向薪金</th>
+                          <th width="75">自我评价</th>
+                          <th width="75">备注</th>
+                          <th width="50">操作</th>
+                      </tr>
+                  </thead>
+                   <tbody>
+                      <tr class="text-c">
+                      <td><input type="checkbox" value="" name=""></td>
+                          <td>150000001</td>
+                          <td><span class="c">吴一</span><span class="r"></td>
+                          <td>计算机信息技术</td>
+                          <td>班级一</td>
+                          <td>北京;上海;广州</td>
+                          <td>互联网;物流;制造</td>
+                          <td>CEO;总经理;主管</td>
+                          <td>1~100000元</td>
+                          <td>细心</td>
+                          <td>无</td>
+                           <td><span class="c"><a style="text-decoration:none" class="ml-5" data-toggle="modal" href="#myModal0" title="修改"><i class="Hui-iconfont">&#xe6df;</i></a></span></td>                       
+                      </tr>
+                      <tr class="text-c">
+                      <td><input type="checkbox" value="" name=""></td>
+                          <td>150000001</td>
+                          <td><span class="c">吴一</span><span class="r"></td>
+                          <td>计算机信息技术</td>
+                          <td>班级一</td>
+                          <td>北京;上海;广州</td>
+                          <td>互联网;物流;制造</td>
+                          <td>CEO;总经理;主管</td>
+                          <td>1~100000元</td>
+                          <td>细心</td>
+                          <td>无</td>
+                           <td><span class="c"><a style="text-decoration:none" class="ml-5" data-toggle="modal" href="#myModal0" title="修改"><i class="Hui-iconfont">&#xe6df;</i></a></span></td>
+                      </tr>
+                      <tr class="text-c">
+                      <td><input type="checkbox" value="" name=""></td>
+                          <td>150000001</td>
+                          <td><span class="c">吴一</span><span class="r"></td>
+                          <td>计算机信息技术</td>
+                          <td>班级一</td>
+                          <td>北京;上海;广州</td>
+                          <td>互联网;物流;制造</td>
+                          <td>CEO;总经理;主管</td>
+                          <td>1~100000元</td>
+                          <td>细心</td>
+                          <td>无</td>
+                           <td><span class="c"><a style="text-decoration:none" class="ml-5" data-toggle="modal" href="#myModal0" title="修改"><i class="Hui-iconfont">&#xe6df;</i></a></span></td>
+                      </tr>
+                      <tr class="text-c">
+                      <td><input type="checkbox" value="" name=""></td>
+                          <td>150000001</td>
+                          <td><span class="c">吴一</span><span class="r"></td>
+                          <td>计算机信息技术</td>
+                          <td>班级一</td>
+                          <td>北京;上海;广州</td>
+                          <td>互联网;物流;制造</td>
+                          <td>CEO;总经理;主管</td>
+                          <td>1~100000元</td>
+                          <td>细心</td>
+                          <td>无</td>
+                           <td><span class="c"><a style="text-decoration:none" class="ml-5" data-toggle="modal" href="#myModal0" title="修改"><i class="Hui-iconfont">&#xe6df;</i></a></span></td>
+                      </tr>
+                   </tbody>
+                </table>   
+          </div>
+      </div>
+      
+      <div id="myModal0" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div class="modal-header">
+                <h3 id="myModalLabel">修改学生就业情况</h3><a class="close" data-dismiss="modal" aria-hidden="true" href="javascript:void();">×</a>
+             </div>
+             <div class="modal-body">
+                 <div class="row cl mb-10"> 
+                    <label class="form-label col-4 text-r">学生姓名：</label>
+                    <div class="formControls col-8">
+                    <label class="form-label">吴一</label>
+                    </div>
+                 </div>  
+                 <div class="row cl mb-10">
+                    <label class="form-label col-4 text-r"><span class="c-red">*</span>意向行业：</label>
+                    <div class="formControls col-8">
+                    <input type="text" id="website-description" placeholder="意向行业(3~5个，以;隔开)" value="" class="input-text" style="width:300px;"></div>
+                </div>
+
+                 <div class="row cl mb-10">
+                    <label class="form-label col-4 text-r"><span class="c-red">*</span>意向城市：</label>
+                    <div class="formControls col-8">
+                    <input type="text" id="website-description" placeholder="意向城市(3~5个，以;隔开)" value="" class="input-text" style="width:300px;">
+                    </div>
+                </div>
+                <div class="row cl mb-10">
+                    <label class="form-label col-4 text-r"><span class="c-red">*</span>意向职位：</label>
+                    <div class="formControls col-8">
+                    <input type="text" id="website-description" placeholder="意向职位(3~5个，以;隔开)" value="" class="input-text" style="width:300px;">
+                    </div>
+                </div>
+                <div class="row cl mb-10">
+                    <label class="form-label col-4 text-r"><span class="c-red">*</span>意向薪金：</label>
+                    <div class="formControls col-8">
+                    <input type="text" id="website-description" placeholder="意向薪金(例如：10000~15000元/月)" value="" class="input-text" style="width:300px;">
+                    </div>
+                </div>
+                <div class="row cl mb-10">
+                    <label class="form-label col-4 text-r"><span class="c-red">*</span>自我评价：</label>
+                    <div class="formControls col-8">
+                        <textarea class="textarea" style="width:300px;"></textarea>
+                    </div>
+                </div>
+                <div class="row cl mb-10">
+                    <label class="form-label col-4 text-r">备注信息：</label>
+                    <div class="formControls col-8">
+                        <textarea class="textarea" style="width:300px;"></textarea>
+                    </div>
+                </div>
+             </div>
+              <div class="modal-footer">
+             <button class="btn btn-primary">确定</button> <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+             </div>
+        </div>
+        
+         <div id="myModal1" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div class="modal-header">
+                <h3 id="myModalLabel">添加学生就业情况</h3><a class="close" data-dismiss="modal" aria-hidden="true" href="javascript:void();">×</a>
+             </div>
+             <div class="modal-body">
+                 <div class="row cl mb-10"> 
+                    <label class="form-label col-4 text-r"><span class="c-red">*</span>学生学号/姓名：</label>
+                    <div class="formControls col-8">
+                    <input type="text" name="" id="" placeholder=" 学生学号/姓名" style="width:200px" class="input-text">
+                    <button name="" id="" class="btn btn-success" style="width:95px"><i class="Hui-iconfont">&#xe665;</i> 检索</button>
+                    </div>
+                </div>   
+               <div class="row cl mb-10">
+                    <label class="form-label col-4 text-r"><span class="c-red">*</span>意向行业：</label>
+                    <div class="formControls col-8">
+                    <input type="text" id="website-description" placeholder="意向行业(3~5个，以;隔开)" value="" class="input-text" style="width:300px;"></div>
+                </div>
+
+                 <div class="row cl mb-10">
+                    <label class="form-label col-4 text-r"><span class="c-red">*</span>意向城市：</label>
+                    <div class="formControls col-8">
+                    <input type="text" id="website-description" placeholder="意向城市(3~5个，以;隔开)" value="" class="input-text" style="width:300px;">
+                    </div>
+                </div>
+                <div class="row cl mb-10">
+                    <label class="form-label col-4 text-r"><span class="c-red">*</span>意向职位：</label>
+                    <div class="formControls col-8">
+                    <input type="text" id="website-description" placeholder="意向职位(3~5个，以;隔开)" value="" class="input-text" style="width:300px;">
+                    </div>
+                </div>
+                <div class="row cl mb-10">
+                    <label class="form-label col-4 text-r"><span class="c-red">*</span>意向薪金：</label>
+                    <div class="formControls col-8">
+                    <input type="text" id="website-description" placeholder="意向薪金(例如：10000~15000元/月)" value="" class="input-text" style="width:300px;">
+                    </div>
+                </div>
+                <div class="row cl mb-10">
+                    <label class="form-label col-4 text-r"><span class="c-red">*</span>自我评价：</label>
+                    <div class="formControls col-8">
+                        <textarea class="textarea" style="width:300px;"></textarea>
+                    </div>
+                </div>
+                <div class="row cl mb-10">
+                    <label class="form-label col-4 text-r">备注信息：</label>
+                    <div class="formControls col-8">
+                        <textarea class="textarea" style="width:300px;"></textarea>
+                    </div>
+                </div>
+             </div>
+              <div class="modal-footer">
+             <button class="btn btn-primary">确定</button> <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+             </div>
+        </div>
+        
+         <div id="myModal2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+             <div class="modal-header">
+                <h3 id="myModalLabel">导入学生就业意愿情况</h3><a class="close" data-dismiss="modal" aria-hidden="true" href="javascript:void();">×</a>
+             </div>
+             <div class="modal-body">
+                 <div class="row cl mb-10">
+                    <label class="form-label col-4 text-r">班级选择：</label>
+                    <div class="formControls col-8">
+                        <span class="select-box inline">
+                        <select name="" class="select">
+                            <option value="0">班级一</option>
+                            <option value="1">班级二</option>
+                            <option value="2">班级三</option>
+                            <option value="3">班级四</option>
+                        </select>
+                    	</span> 
+                    </div>
+                </div>
+                
+                <div class="row cl mb-10">
+                    <label class="form-label col-4 text-r">就业意向登记：</label>
+                    <div class="formControls col-8">
+                        <input class="input-text upload-url" type="text" name="uploadfile-2" id="uploadfile-2" readonly  datatype="*" nullmsg="请选择学生就业意向Excel表！" style="width:200px">
+                        <a href="javascript:void();" class="btn btn-primary upload-btn" style="width:95px"><i class="Hui-iconfont">&#xe642;</i> 浏览文件</a>
+                    </div>
+                </div>
+                <div class="row cl">
+                   <span class="c">
+                       <p class="c-warning">
+                            <b>备注：</b><br/>学生就业意向需以Excel方式导入，Excel支持03和07以上版本，导入时需满足：<br/>1） 只导入一个Excel，Excel的前7列为学生学号，意向城市，意向行业，意向职位，意向薪金，自我评价，备注<br/>2） 意向城市，意向行业，意向职位可录入3~5个，以;隔开
+                       </p>
+                   </span>
+                </div>
+             </div>
+              <div class="modal-footer">
+             <button class="btn btn-primary">确定</button> <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+             </div>
+        </div>
+
+	</form>
+</div>
+<script type="text/javascript" src="../lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="../lib/Validform/5.3.2/Validform.min.js"></script> 
+<script type="text/javascript" src="../lib/layer/1.9.3/layer.js"></script> 
+<script type="text/javascript" src="../lib/My97DatePicker/WdatePicker.js"></script> 
+<script type="text/javascript" src="../lib/icheck/jquery.icheck.min.js"></script> 
+<script type="text/javascript" src="../lib/bootstrap-modal/2.2.4/bootstrap-modalmanager.js"></script>
+<script type="text/javascript" src="../lib/bootstrap-modal/2.2.4/bootstrap-modal.js"></script>
+<script type="text/javascript" src="../js/H-ui.js"></script> 
+<script type="text/javascript" src="../js/H-ui.admin.js"></script> 
+<script type="text/javascript" src="../lib/datatables/1.10.0/jquery.dataTables.min.js"></script> 
+<script type="text/javascript">
+$('.table-sort').dataTable({
+	"aaSorting": [[ 0, "desc" ]],//默认第几个排序
+	"bStateSave": true,//状态保存
+	"aoColumnDefs": [
+	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+	  {"orderable":false,"aTargets":[1]}// 制定列不参与排序
+	]
+});
+$(function(){
+	$('.skin-minimal input').iCheck({
+		checkboxClass: 'icheckbox-blue',
+		radioClass: 'iradio-blue',
+		increaseArea: '20%'
+	});
+	$.Huitab("#tab-system .tabBar span","#tab-system .tabCon","current","click","0");
+});
+</script>
+</body>
+</html>

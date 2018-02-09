@@ -1,0 +1,48 @@
+﻿@charset "utf-8";
+/* 你自己的样式 */
+
+.submenu-list{ padding-left:15px;}
+.textbox{ width:100%; float:left;}
+.textbox li{ float:left; margin:10px 0; }
+.textbox li input,.textbox li select{ padding:5px; border:solid 1px #CCC; margin:0 10px;}
+.textbox li select{ width:140px;}
+.claer{ clear:both;}
+.btnright{ float:right; margin:10px 0; width:12%;}
+.btnright dd{ margin-bottom:10px;}
+<!--.btnright dd input{ float:right; background:#5a98de;padding:5px; border:none 0; color:#FFF; border-radius:5px;-moz-border-radius:5px;-webik-border-radius:5px;font-size:15px;}-->
+.btnright dd input{ width:80px;}
+.listbox{ width:90%; margin:0 auto;}
+.listbox li{ float:left; width:33.3%; margin-bottom:20px;}
+.listbox li input,.listbox li select{padding:5px; border:solid 1px #CCC; margin:0 10px; width:50%;}
+.listbox li label{ width:120px; text-align:right; background:#CCC; display:inline-block;}
+
+con-bot label{ vertical-align:middle; margin-top:15px;}
+.con-bot{ margin-bottom:20px;}
+.col-2{ margin-bottom:20px;}
+.con-top{ margin-top:20px; width:90%;}
+.titles h3{ font-size:18px; text-align:right;}
+.paginate_button{ border:solid 1px #cccccc; padding:5px;}
+.dataTables_paginate{ float:right;}
+.bgcurg{ padding:5px 10px; background:#5a98de; color:#FFF;width:85%; margin:30px auto;}
+.chakan-box td{ font-size:16px; padding:10px; text-align:center;}
+.yuangongolist{ margin:30px;}
+.yuangongolist {height:32px; line-height:32px;background:#e8e8e8;}
+.yuangongolist li{ cursor: pointer;display: inline-block;float: left;font-weight: bold;height: 32px;line-height: 32px;padding: 0px 15px;color:#000; }
+.yuangongolist li.hoverbg{background:#222222; color:#FFF;}
+
+.huifangboxs{ width:43%; float:left; margin:10px; margin-left:15px; height:auto;}
+.huifangboxs h3{ font-size:18px; font-weight:400;padding-top:0px;}
+.con-conter{ border:solid 1px #CCC; height:420px;}
+.dianbtns{ padding:3px 10px; background:#5a98de; color:#FFF; border:none 0; cursor:pointer; border-radius:5px;-moz-border-radius:5px;-webkit-border-radius:5px; }
+
+
+.sehbox{ margin:0 10px; vertical-align:middle;}
+.btnright dl dd{ float:left; margin-left:10px;}
+.bgCcolor{ background:#cccccc; border: solid 1px #cccccc;}
+.pushBox h2,.pushBox h3{ font-size:20px;}
+.pushBox  li input{ margin:0 10px;}
+.pushBox{width:90%; margin:0 auto;}
+.textArea textarea{ width:100%;}
+.mTop{ margin-top:20px;}
+
+

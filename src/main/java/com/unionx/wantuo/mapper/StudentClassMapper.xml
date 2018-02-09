@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.StudentClassMapper" >
+  <resultMap id="BaseResultMap" type="com.unionx.wantuo.model.StudentClass" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="student_id" property="studentId" jdbcType="INTEGER" />
+    <result column="class_id" property="classId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  
+	<sql id="Example_Where_Clause_A">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="classId != null and classId != ''">
+				and sc.class_id =#{classId}
+			</if>
+			<if test="name != null and name != ''">
+				and s.name LIKE CONCAT('%',#{name},'%')
+			</if>
+		</trim>
+	</sql>
+
+	<sql id="Base_Column_List_A">
+		sc.id,sc.student_id,sc.class_id,s.name
+	</sql>
+
+	<select id="getCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM t_student_class sc
+		join t_student s on sc.student_id = s.id
+		<include refid="Example_Where_Clause_A" />
+	</select>
+
+	<select id="queryByList" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List_A" />
+		FROM t_student_class sc
+		join t_student s on sc.student_id = s.id
+		<include refid="Example_Where_Clause_A" />
+		<if test="limit != null and limit != ''">
+			${limit}
+		</if>
+	</select>
+	 
+  <insert id="saveStudentClass">
+    insert into t_student_class (student_id,class_id) values (#{0,jdbcType=INTEGER}, #{1,jdbcType=INTEGER})
+  </insert>
+  
+    <delete id="deleteStudentClass">
+    delete from t_student_class where student_id=#{0,jdbcType=INTEGER} and class_id = #{1,jdbcType=INTEGER}
+  </delete>
+   
+  <resultMap id="BaseResultMap_S" type="com.unionx.wantuo.model.PhoneStudent" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  	<select id="selectClassStudent" resultMap="BaseResultMap_S">
+      select s.id,s.name from t_student_class sc
+      join t_student s on sc.student_id = s.id
+      where sc.class_id = #{0}
+	</select>
+  
+</mapper>

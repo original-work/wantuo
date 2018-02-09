@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.SchoolMapper">
+	<resultMap id="BaseResultMap" type="com.unionx.wantuo.model.School">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="location" property="location" jdbcType="INTEGER" />
+		<result column="location_name" property="locationName" jdbcType="VARCHAR" />
+		<result column="bairro" property="bairro" jdbcType="INTEGER" />
+		<result column="bairro_name" property="bairroName" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="school_name" property="schoolName" jdbcType="VARCHAR" />
+		<result column="school_contacts" property="schoolContacts" jdbcType="VARCHAR" />
+		<result column="id_card_image" property="idCardImage" jdbcType="VARCHAR" />
+		<result column="coordinate_x" property="coordinateX" jdbcType="VARCHAR" />
+		<result column="coordinate_y" property="coordinateY" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="create_date" property="createDate" jdbcType="VARCHAR" />
+		<result column="update_date" property="updateDate" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="status_name" property="statusName" jdbcType="VARCHAR" />
+		<result column="full_name" property="fullName" jdbcType="VARCHAR"/>
+		<result column="property" property="property"  jdbcType="INTEGER"/>
+		<result column="property_name" property="propertyName" jdbcType="VARCHAR"/>
+	</resultMap>
+	<!-- abner 手机端获取学校列表 -->
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="schoolName != null and schoolName != ''">
+				and school_name LIKE CONCAT('%',#{schoolName},'%')
+			</if>
+			<if test="location != null and location != ''">
+				and location = #{location}
+			</if>
+			<if test="locationName != null and locationName != ''">
+				and location_name LIKE CONCAT('%',#{locationName},'%')
+			</if>
+			<if test="bairro != null and bairro != ''">
+				and bairro = #{bairro}
+			</if>
+			<if test="status != null and status != ''">
+				and status = #{status}
+			</if>
+		</trim>
+	</sql>
+	<!-- abner 手机端获取学校列表 -->
+	<sql id="Base_Column_List">
+		id,location,location_name,bairro,bairro_name,address,email,school_name,school_contacts,coordinate_x,coordinate_y,phone,create_date,update_date,status,status_name
+		,full_name,property,property_name
+	</sql>
+	<!-- abner 手机端获取学校列表 -->
+	<select id="getCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM t_school
+		<include refid="Example_Where_Clause" />
+	</select>
+	<!-- abner 手机端获取学校列表 -->
+	<select id="queryByList" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM t_school
+		<include refid="Example_Where_Clause" />
+		order by
+		<if test="x != null and x != '' and y != null and y != ''">
+			<![CDATA[(((#{x}-coordinate_x)*111319.5)*((#{x}-coordinate_x)*111319.5)+((#{y}-coordinate_y)*95198.3)*((#{y}-coordinate_y)*95198.3))]]>
+			asc,
+		</if>
+		 create_date DESC
+		<if test="limit != null and limit != ''">
+			${limit}
+		</if>
+	</select>
+	
+	<delete id="updateById" parameterType="java.lang.String">
+		update t_school set  status=1 where id=#{id}
+	</delete>
+	
+	
+	<insert id="insertSelective" parameterType="com.unionx.wantuo.model.School" >
+    insert into t_school
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null " >
+        id,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="locationName != null" >
+        location_name,
+      </if>
+      <if test="bairro != null" >
+        bairro,
+      </if>
+      <if test="bairroName != null" >
+        bairro_name,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="schoolName != null" >
+        school_name,
+      </if>
+      <if test="schoolContacts != null" >
+        school_contacts,
+      </if>
+      <if test="coordinateX != null" >
+        coordinate_x,
+      </if>
+      <if test="coordinateY != null" >
+        coordinate_y,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="createDate != null" >
+        create_date,
+      </if>
+      <if test="updateDate != null" >
+        update_date,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="statusName != null" >
+        status_name,
+      </if>
+      <if test="fullName != null" >
+        full_name,
+      </if>
+      <if test="property != null" >
+        property,
+      </if>
+      <if test="propertyName != null" >
+        property_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=INTEGER},
+      </if>
+      <if test="locationName != null" >
+        #{locationName,jdbcType=VARCHAR},
+      </if>
+      <if test="bairro != null" >
+        #{bairro,jdbcType=INTEGER},
+      </if>
+      <if test="bairroName != null" >
+        #{bairroName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolName != null" >
+        #{schoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolContacts != null" >
+        #{schoolContacts,jdbcType=VARCHAR},
+      </if>
+      <if test="coordinateX != null" >
+        #{coordinateX,jdbcType=DECIMAL},
+      </if>
+      <if test="coordinateY != null" >
+        #{coordinateY,jdbcType=DECIMAL},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null" >
+        #{statusName,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null" >
+        #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null" >
+        #{property,jdbcType=INTEGER},
+      </if>
+      <if test="propertyName != null" >
+        #{propertyName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+	
+	
+	<update id="updateByPrimaryKeySelective" parameterType="com.unionx.wantuo.model.School" >
+    update t_school
+    <set >
+      <if test="location != null  and  location!=''" >
+        location = #{location,jdbcType=INTEGER},
+      </if>
+      <if test="locationName != null and  locationName !=''" >
+        location_name = #{locationName,jdbcType=VARCHAR},
+      </if>
+      <if test="bairro != null and  bairro!=''" >
+        bairro = #{bairro,jdbcType=INTEGER},
+      </if>
+      <if test="bairroName != null and  bairroName!=''" >
+        bairro_name = #{bairroName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null and  address!=''" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null and  email!=''" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolName != null and   schoolName!=''" >
+        school_name = #{schoolName,jdbcType=VARCHAR},
+      </if>
+      <if test="schoolContacts != null and  schoolContacts!=''" >
+        school_contacts = #{schoolContacts,jdbcType=VARCHAR},
+      </if>
+      <if test="coordinateX != null  and   coordinateX !=''" >
+        coordinate_x = #{coordinateX,jdbcType=DECIMAL},
+      </if>
+      <if test="coordinateY != null and coordinateY !=''" >
+        coordinate_y = #{coordinateY,jdbcType=DECIMAL},
+      </if>
+      <if test="phone != null and   phone !=''" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null  and   createDate !=''" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null and   status!=''" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null and    statusName !=''" >
+        status_name = #{statusName,jdbcType=VARCHAR},
+      </if>
+      <if test="fullName != null and fullName !='' " >
+        full_name = #{fullName,jdbcType=VARCHAR},
+      </if>
+      <if test="property != null and property  !='' " >
+        property = #{property,jdbcType=INTEGER},
+      </if>
+      <if test="propertyName != null and propertyName !='' " >
+        property_name = #{propertyName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

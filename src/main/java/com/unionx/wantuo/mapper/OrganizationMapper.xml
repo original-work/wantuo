@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.OrganizationMapper" >
+  <resultMap id="BaseResultMap" type="com.unionx.wantuo.model.Organization" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="location" property="location" jdbcType="INTEGER" />
+	<result column="location_name" property="locationName" jdbcType="VARCHAR" />
+	<result column="bairro" property="bairro" jdbcType="INTEGER" />
+	<result column="bairro_name" property="bairroName" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="login_accounts" property="loginAccounts" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="organizatio_type" property="organizatioType" jdbcType="INTEGER" />
+    <result column="organizatio_type_name" property="organizatioTypeName" jdbcType="VARCHAR" />
+    <result column="organization_abbreviation" property="organizationAbbreviation" jdbcType="VARCHAR" />
+    <result column="organization" property="organization" jdbcType="VARCHAR" />
+    <result column="organization_contacts" property="organizationContacts" jdbcType="VARCHAR" />
+    <result column="id_card_image" property="idCardImage" jdbcType="VARCHAR" />
+    <result column="business_license_image" property="businessLicenseImage" jdbcType="VARCHAR" />
+    <result column="coordinate_x" property="coordinateX" jdbcType="VARCHAR" />
+    <result column="coordinate_y" property="coordinateY" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="business_license" property="businessLicense" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="VARCHAR" />
+    <result column="check" property="check" jdbcType="INTEGER" />
+    <result column="check_name" property="checkName" jdbcType="VARCHAR" />
+    <result column="attestation" property="attestation" jdbcType="INTEGER" />
+    <result column="attestation_name" property="attestationName" jdbcType="VARCHAR" />
+    <result column="warranty" property="warranty" jdbcType="INTEGER" />
+    <result column="warranty_name" property="warrantyName" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="label" property="label" jdbcType="VARCHAR" />
+    <result column="photo_album" property="photoAlbum" jdbcType="VARCHAR" />
+    <result column="cost" property="cost" jdbcType="DOUBLE" />
+    <result column="order_num" property="orderNum" jdbcType="INTEGER" />
+    <result column="evaluate" property="evaluate" jdbcType="DOUBLE" />
+    <result column="evaluate_num" property="evaluateNum" jdbcType="INTEGER" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="teacher" property="teacher" jdbcType="VARCHAR" />
+    <result column="head_Portrait" property="headPortrait" jdbcType="VARCHAR" />
+    <result column="distance" property="distance" jdbcType="VARCHAR"/>
+    <result column="sort" property="sort" jdbcType="INTEGER"/>
+  </resultMap>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select *
+    from t_organization
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_organization
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.unionx.wantuo.model.Organization" >
+    insert into t_organization (id, location, bairro, 
+      address, login_accounts, email, 
+      organizatio_type, organizatio_type_name, organization_abbreviation, 
+      organization, organization_contacts, id_card_image, 
+      business_license_image, phone, 
+      id_card, business_license, create_date, 
+      update_date, `check`, check_name, 
+      attestation, attestation_name, warranty, 
+      warranty_name, introduce, label, 
+      photo_album, cost, order_num, 
+      evaluate, evaluate_num, subject
+      )
+    values (#{id,jdbcType=INTEGER}, #{location,jdbcType=VARCHAR}, #{bairro,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{loginAccounts,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{organizatioType,jdbcType=INTEGER}, #{organizatioTypeName,jdbcType=VARCHAR}, #{organizationAbbreviation,jdbcType=VARCHAR}, 
+      #{organization,jdbcType=VARCHAR}, #{organizationContacts,jdbcType=VARCHAR}, #{idCardImage,jdbcType=VARCHAR}, 
+      #{businessLicenseImage,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{idCard,jdbcType=VARCHAR}, #{businessLicense,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{check,jdbcType=INTEGER}, #{checkName,jdbcType=VARCHAR}, 
+      #{attestation,jdbcType=INTEGER}, #{attestationName,jdbcType=VARCHAR}, #{warranty,jdbcType=INTEGER}, 
+      #{warrantyName,jdbcType=VARCHAR}, #{introduce,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, 
+      #{photoAlbum,jdbcType=VARCHAR}, #{cost,jdbcType=DOUBLE}, #{orderNum,jdbcType=INTEGER}, 
+      #{evaluate,jdbcType=DOUBLE}, #{evaluateNum,jdbcType=INTEGER}, #{subject,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.unionx.wantuo.model.Organization" >
+    insert into t_organization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !='' " >
+        id,
+      </if>
+      <if test="location != null and location !='' " >
+        location,
+      </if>
+      <if test="locationName != null and locationName !='' " >
+        location_name,
+      </if>
+      <if test="bairro != null and bairro !='' " >
+        bairro,
+      </if>
+      <if test="bairroName != null and bairroName !='' " >
+        bairro_name,
+      </if>
+      <if test="address != null and address !='' " >
+        address,
+      </if>
+      <if test="loginAccounts != null and loginAccounts !='' " >
+        login_accounts,
+      </if>
+      <if test="email != null and  email !='' " >
+        email,
+      </if>
+      <if test="organizatioType != null and organizatioType !='' " >
+        organizatio_type,
+      </if>
+      <if test="organizatioTypeName != null and organizatioTypeName !='' " >
+        organizatio_type_name,
+      </if>
+      <if test="organizationAbbreviation != null and organizationAbbreviation !='' " >
+        organization_abbreviation,
+      </if>
+      <if test="organization != null and organization !='' " >
+        organization,
+      </if>
+      <if test="organizationContacts != null and organizationContacts !='' " >
+        organization_contacts,
+      </if>
+      <if test="idCardImage != null and idCardImage !=''" >
+        id_card_image,
+      </if>
+      <if test="businessLicenseImage != null and businessLicenseImage !=''" >
+        business_license_image,
+      </if>
+      <if test="phone != null and phone !=''" >
+        phone,
+      </if>
+      <if test="idCard != null and idCard  !=''" >
+        id_card,
+      </if>
+      <if test="businessLicense != null and businessLicense  !='' " >
+        business_license,
+      </if>
+      <if test="createDate != null and createDate!='' " >
+        create_date,
+      </if>
+      <if test="updateDate != null and updateDate !=''" >
+        update_date,
+      </if>
+      <if test="check != null and check !='' " >
+       `check`,
+      </if>
+      <if test="checkName != null and checkName !=''" >
+        check_name,
+      </if>
+      <if test="attestation != null and attestation !=''" >
+        attestation,
+      </if>
+      <if test="attestationName != null and attestationName !='' " >
+        attestation_name,
+      </if>
+      <if test="warranty != null and warranty !='' " >
+        warranty,
+      </if>
+      <if test="warrantyName != null and warrantyName !=''" >
+        warranty_name,
+      </if>
+      <if test="introduce != null and introduce !='' " >
+        introduce,
+      </if>
+      <if test="label != null and label !='' " >
+        label,
+      </if>
+      <if test="photoAlbum != null and photoAlbum !=''" >
+        photo_album,
+      </if>
+      <if test="cost != null and cost !='' " >
+        cost,
+      </if>
+      <if test="orderNum != null and orderNum !='' " >
+        order_num,
+      </if>
+      <if test="evaluate != null and evaluate !='' " >
+        evaluate,
+      </if>
+      <if test="evaluateNum != null and evaluateNum!=''" >
+        evaluate_num,
+      </if>
+      <if test="subject != null and subject!='' " >
+        subject,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !='' " >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="location != null and location !='' " >
+        #{location,jdbcType=INTEGER},
+      </if>
+
+      <if test="locationName != null and locationName !='' " >
+        #{locationName,jdbcType=VARCHAR},
+      </if>
+      <if test="bairro != null and bairro!=''" >
+        #{bairro,jdbcType=INTEGER},
+      </if>
+      <if test="bairroName != null and bairroName!=''" >
+        #{bairroName,jdbcType=INTEGER},
+      </if>
+      <if test="address != null and address !='' " >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="loginAccounts != null and loginAccounts!='' " >
+        #{loginAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null and email !='' " >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="organizatioType != null and organizatioType!='' " >
+        #{organizatioType,jdbcType=INTEGER},
+      </if>
+      <if test="organizatioTypeName != null and organizatioTypeName!='' " >
+        #{organizatioTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationAbbreviation != null and organizationAbbreviation!=''" >
+        #{organizationAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null and organization!='' " >
+        #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationContacts != null and organizationContacts!=''" >
+        #{organizationContacts,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardImage != null and idCardImage!=''" >
+        #{idCardImage,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenseImage != null and businessLicenseImage!='' " >
+        #{businessLicenseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null and phone!='' " >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null and idCard !='' " >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicense != null and businessLicense!=''" >
+        #{businessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null and createDate!='' " >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null and updateDate!='' " >
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="check != null and check !='' " >
+        #{check,jdbcType=INTEGER},
+      </if>
+      <if test="checkName != null and checkName!='' " >
+        #{checkName,jdbcType=VARCHAR},
+      </if>
+      <if test="attestation != null and attestation!='' " >
+        #{attestation,jdbcType=INTEGER},
+      </if>
+      <if test="attestationName != null and attestationName!='' " >
+        #{attestationName,jdbcType=VARCHAR},
+      </if>
+      <if test="warranty != null and warranty!='' " >
+        #{warranty,jdbcType=INTEGER},
+      </if>
+      <if test="warrantyName != null and warrantyName!='' " >
+        #{warrantyName,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null and introduce!='' " >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null and label!='' " >
+        #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="photoAlbum != null and photoAlbum !='' " >
+        #{photoAlbum,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null and cost !='' " >
+        #{cost,jdbcType=DOUBLE},
+      </if>
+      <if test="orderNum != null and orderNum!='' " >
+        #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="evaluate != null and evaluate!='' " >
+        #{evaluate,jdbcType=DOUBLE},
+      </if>
+      <if test="evaluateNum != null and evaluateNum!='' " >
+        #{evaluateNum,jdbcType=INTEGER},
+      </if>
+      <if test="subject != null and subject!='' " >
+        #{subject,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.unionx.wantuo.model.Organization" >
+    update t_organization
+    <set >
+      <if test="location != null and location !='' " >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+       <if test="locationName!= null and locationName !='' " >
+        location_name = #{locationName,jdbcType=VARCHAR},
+      </if>
+      <if test="bairro != null and bairro  !='' " >
+        bairro = #{bairro,jdbcType=VARCHAR},
+      </if>
+      <if test="sort !=null and sort !='' ">
+      	sort=#{sort,jdbcType=INTEGER},
+      </if>
+      <if test="bairroName != null and bairroName  !='' " >
+        bairro_name = #{bairroName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null and address  !='' " >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null and email  !='' " >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="organizatioType != null and organizatioType !='' " >
+        organizatio_type = #{organizatioType,jdbcType=INTEGER},
+      </if>
+      <if test="organizatioTypeName != null and organizatioTypeName !='' " >
+        organizatio_type_name = #{organizatioTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationAbbreviation != null and organizationAbbreviation !='' " >
+        organization_abbreviation = #{organizationAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null and organization !='' " >
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationContacts != null and organizationContacts!='' " >
+        organization_contacts = #{organizationContacts,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardImage != null and idCardImage !='' " >
+        id_card_image = #{idCardImage,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenseImage != null and businessLicenseImage!='' " >
+        business_license_image = #{businessLicenseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null and phone !='' " >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null and idCard !='' " >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicense != null and businessLicense!='' " >
+        business_license = #{businessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null and createDate!='' " >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null and updateDate!='' " >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="check != null and check !='' " >
+        `check` = #{check,jdbcType=INTEGER},
+      </if>
+      <if test="checkName != null and checkName!='' " >
+        check_name = #{checkName,jdbcType=VARCHAR},
+      </if>
+      <if test="attestation != null and attestation!='' " >
+        attestation = #{attestation,jdbcType=INTEGER},
+      </if>
+      <if test="attestationName != null and attestationName!='' " >
+        attestation_name = #{attestationName,jdbcType=VARCHAR},
+      </if>
+      <if test="warranty != null and warranty!='' " >
+        warranty = #{warranty,jdbcType=INTEGER},
+      </if>
+      <if test="warrantyName != null and warrantyName !='' " >
+        warranty_name = #{warrantyName,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null and introduce!='' " >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null and label !='' " >
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="photoAlbum != null and photoAlbum!='' " >
+        photo_album = #{photoAlbum,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null and cost !='' " >
+        cost = #{cost,jdbcType=DOUBLE},
+      </if>
+      <if test="orderNum != null and orderNum!='' " >
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="evaluate != null and evaluate !=''" >
+        evaluate = #{evaluate,jdbcType=DOUBLE},
+      </if>
+      <if test="evaluateNum != null and evaluateNum!='' " >
+        evaluate_num = #{evaluateNum,jdbcType=INTEGER},
+      </if>
+      <if test="subject != null and subject!='' " >
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+    </set>
+         where login_accounts = #{loginAccounts,jdbcType=VARCHAR} and `check` != 0
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.unionx.wantuo.model.Organization" >
+    update t_organization
+    set location = #{location,jdbcType=VARCHAR},
+      bairro = #{bairro,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      login_accounts = #{loginAccounts,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      organizatio_type = #{organizatioType,jdbcType=INTEGER},
+      organizatio_type_name = #{organizatioTypeName,jdbcType=VARCHAR},
+      organization_abbreviation = #{organizationAbbreviation,jdbcType=VARCHAR},
+      organization = #{organization,jdbcType=VARCHAR},
+      organization_contacts = #{organizationContacts,jdbcType=VARCHAR},
+      id_card_image = #{idCardImage,jdbcType=VARCHAR},
+      business_license_image = #{businessLicenseImage,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      business_license = #{businessLicense,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      `check` = #{check,jdbcType=INTEGER},
+      check_name = #{checkName,jdbcType=VARCHAR},
+      attestation = #{attestation,jdbcType=INTEGER},
+      attestation_name = #{attestationName,jdbcType=VARCHAR},
+      warranty = #{warranty,jdbcType=INTEGER},
+      warranty_name = #{warrantyName,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      label = #{label,jdbcType=VARCHAR},
+      photo_album = #{photoAlbum,jdbcType=VARCHAR},
+      cost = #{cost,jdbcType=DOUBLE},
+      order_num = #{orderNum,jdbcType=INTEGER},
+      evaluate = #{evaluate,jdbcType=DOUBLE},
+      evaluate_num = #{evaluateNum,jdbcType=INTEGER},
+      subject = #{subject,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findByLoginAccounts" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from t_organization where login_accounts=#{loginAccounts} and warranty=2 and `check` !=0
+  </select>
+
+    <!-- abner 获取单个机构信息 -->
+    <sql id="Base_Column_List" >
+		o.id,o.location,o.location_name,o.bairro,o.bairro_name,o.address,o.login_accounts,o.email,o.organizatio_type,o.organizatio_type_name,o.organization_abbreviation
+		,o.organization,o.organization_contacts,a.path as id_card_image,ay.path as business_license_image,o.coordinate_x,o.coordinate_y,o.phone,o.id_card,o.business_license
+		,o.create_date,o.update_date,o.attestation,o.attestation_name,o.warranty,o.warranty_name,o.introduce,o.label,o.photo_album,o.cost,o.order_num
+		,o.evaluate,o.evaluate_num,o.subject,o.teacher
+    </sql>
+  	<!-- abner 获取单个机构信息 -->
+	<select id="getById" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM t_organization o left join t_accessory a on o.id_card_image=a.name
+		                      left join t_accessory ay on o.business_license_image=ay.name
+		where 1=1 and o.check != 0
+			<if test="loginAccounts != null and loginAccounts != ''">
+				and login_accounts =#{loginAccounts}
+			</if>
+	</select>
+	
+	
+    <!-- abner 手机端获取机构列表 -->
+	<sql id="Example_Where_Clause_A">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="organization != null and organization != ''">
+				and organization LIKE CONCAT('%',#{organization},'%')
+			</if>
+			<if test="location != null and location != ''">
+				and location = #{location}
+			</if>
+			<if test="bairro != null and bairro != ''">
+				and bairro = #{bairro}
+			</if>
+			<if test="warranty != null and warranty != ''">
+				and warranty = #{warranty}
+			</if>
+		    <if test="check != null and check != ''">
+				and `check` = #{check}
+			</if>
+			<if test="type == 1">
+			<if test="x != null and x != '' and y != null and y != '' and distance != null and distance != ''">
+				<![CDATA[and ((#{x}-coordinate_x)*111319.5)*((#{x}-coordinate_x)*111319.5)+((#{y}-coordinate_y)*95198.3)*((#{y}-coordinate_y)*95198.3) <= (#{distance}*#{distance})]]>
+			</if>
+			</if>
+		</trim>
+	</sql>
+	<!-- abner web端获取机构列表 -->
+	<sql id="Example_Where_Clause_B">
+		where 1=1 and `check` != 0
+		<trim suffixOverrides=",">
+			<if test="organizationAbbreviation != null and organizationAbbreviation != ''">
+				and organization_abbreviation LIKE CONCAT('%',#{organizationAbbreviation},'%')
+			</if>
+			<if test="loginAccounts != null and loginAccounts != ''">
+			    and login_accounts LIKE CONCAT('%',#{loginAccounts},'%')
+			</if>
+			<if test="check != null and check != ''">
+				and `check` = #{check}
+			</if>
+			<if test="warranty != null and warranty != ''">
+				and warranty = #{warranty}
+			</if>
+		</trim>
+	</sql>
+    <!-- abner 手机端获取机构列表 -->
+	<sql id="Base_Column_List_A">
+		id,location,location_name,bairro,bairro_name,address,login_accounts,email,organizatio_type,organizatio_type_name,organization_abbreviation
+		,organization,organization_contacts,id_card_image,business_license_image,coordinate_x,coordinate_y,phone,id_card,business_license
+		,create_date,update_date,attestation,attestation_name,warranty,warranty_name,introduce,label,photo_album,cost,order_num
+		,evaluate,evaluate_num,subject,teacher
+		<if test="type == 1">
+			<if test="x != null and x != '' and y != null and y != ''">
+				<![CDATA[,  sqrt (((#{x}-coordinate_x)*111319.5)*((#{x}-coordinate_x)*111319.5)+((#{y}-coordinate_y)*95198.3)*((#{y}-coordinate_y)*95198.3))]]> as distance
+			</if>
+		</if>
+	</sql>
+	<!--web端  -->
+	<sql id="Base_Column_List_B">
+		id,sort,location,location_name,bairro,bairro_name,address,login_accounts,email,organizatio_type,organizatio_type_name,organization_abbreviation
+		,organization,organization_contacts,id_card_image,business_license_image,coordinate_x,coordinate_y,phone,id_card,business_license
+		,create_date,update_date,attestation,attestation_name,warranty,warranty_name,introduce,label,photo_album,cost,order_num
+		,evaluate,evaluate_num,subject,teacher,head_portrait,`check`,check_name
+	</sql>
+    <!-- abner 手机端获取机构列表 -->
+	<select id="getCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM t_organization
+		<include refid="Example_Where_Clause_A" />
+	</select>
+	<!-- web端获取机构列表 -->
+	<select id="getCountWeb" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM t_organization
+		<include refid="Example_Where_Clause_B"/>
+	</select>
+    <!-- abner 手机端获取机构列表 -->
+	<select id="queryByList" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List_A" />
+		FROM t_organization
+		<include refid="Example_Where_Clause_A" />
+		order by
+		<if test="type == 1">
+		<if test="x != null and x != '' and y != null and y != ''">
+			<![CDATA[(((#{x}-coordinate_x)*111319.5)*((#{x}-coordinate_x)*111319.5)+((#{y}-coordinate_y)*95198.3)*((#{y}-coordinate_y)*95198.3))]]>
+			asc,
+		</if>
+		</if>
+		<if test="type == 3">
+		    sort asc,
+		</if>
+		 evaluate DESC	
+		<if test="limit != null and limit != ''">
+			${limit}
+		</if>
+	</select>
+	<!-- abner 修改机构信息 -->
+	<update id="save">
+    update t_organization
+    <set >
+      <if test="location != null and location != ''" >
+        location = #{location,jdbcType=INTEGER},
+      </if>
+      <if test="locationName != null and locationName != ''" >
+        location_name = #{locationName,jdbcType=INTEGER},
+      </if>
+      <if test="bairro != null and bairro != ''" >
+        bairro = #{bairro,jdbcType=INTEGER},
+      </if>
+      <if test="bairroName != null and bairroName != ''" >
+        bairro_name = #{bairroName,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null and address != ''" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="loginAccounts != null and loginAccounts != ''" >
+        login_accounts = #{loginAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null and email != ''" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="organizatioType != null and organizatioType != ''" >
+        organizatio_type = #{organizatioType,jdbcType=INTEGER},
+      </if>
+      <if test="organizatioTypeName != null and organizatioTypeName != ''" >
+        organizatio_type_name = #{organizatioTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationAbbreviation != null and organizationAbbreviation != ''" >
+        organization_abbreviation = #{organizationAbbreviation,jdbcType=VARCHAR},
+      </if>
+      <if test="organization != null and organization != ''" >
+        organization = #{organization,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationContacts != null and organizationContacts != ''" >
+        organization_contacts = #{organizationContacts,jdbcType=VARCHAR},
+      </if>
+      <if test="idCardImage != null and idCardImage != ''" >
+        id_card_image = #{idCardImage,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicenseImage != null and businessLicenseImage != ''" >
+        business_license_image = #{businessLicenseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="coordinateX != null and coordinateX != ''" >
+        coordinate_x = #{coordinateX,jdbcType=DECIMAL},
+      </if>
+      <if test="coordinateY != null and coordinateY != ''" >
+        coordinate_y = #{coordinateY,jdbcType=DECIMAL},
+      </if>
+      <if test="phone != null and phone != ''" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="idCard != null and idCard != ''" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="businessLicense != null and businessLicense != ''" >
+        business_license = #{businessLicense,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null and createDate != ''" >
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null and updateDate != ''" >
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="check != null and check != ''" >
+        `check` = #{check,jdbcType=INTEGER},
+      </if>
+      <if test="checkName != null and checkName != ''" >
+        check_name = #{checkName,jdbcType=VARCHAR},
+      </if>
+      <if test="attestation != null and attestation != ''" >
+        attestation = #{attestation,jdbcType=INTEGER},
+      </if>
+      <if test="attestationName != null and attestationName != ''" >
+        attestation_name = #{attestationName,jdbcType=VARCHAR},
+      </if>
+      <if test="warranty != null and warranty != ''" >
+        warranty = #{warranty,jdbcType=INTEGER},
+      </if>
+      <if test="warrantyName != null and warrantyName != ''" >
+        warranty_name = #{warrantyName,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null and introduce != ''" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="label != null and label != ''" >
+        label = #{label,jdbcType=VARCHAR},
+      </if>
+      <if test="photoAlbum != null and photoAlbum != ''" >
+        photo_album = #{photoAlbum,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null and cost != ''" >
+        cost = #{cost,jdbcType=DOUBLE},
+      </if>
+      <if test="orderNum != null and orderNum != ''" >
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+      <if test="evaluate != null and evaluate != ''" >
+        evaluate = #{evaluate,jdbcType=DOUBLE},
+      </if>
+      <if test="evaluateNum != null and evaluateNum != ''" >
+        evaluate_num = #{evaluateNum,jdbcType=INTEGER},
+      </if>
+      <if test="subject != null and subject != ''" >
+        subject = #{subject,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where login_accounts = #{loginAccounts,jdbcType=VARCHAR}
+    </update>
+    
+    <!--条件查询web端  -->
+    <select id="queryByListWeb" resultMap="BaseResultMap" parameterType="Object">
+    	SELECT
+		<include refid="Base_Column_List_B" />
+		FROM t_organization 
+		<include refid="Example_Where_Clause_B" />
+		<if test="idCard ==null or idCard=='' ">
+			 	ORDER BY create_date desc
+		</if>
+		<if test="idCard !=null and idCard !=''  ">
+				ORDER BY sort ASC
+		</if>
+		<if test="limit != null and limit != ''">
+			 ${limit}
+		</if>
+    </select>
+    <!-- 审批 -->
+    <update id="checkSuccess" parameterType="Object">
+   		update t_organization set `check`=#{check} where id=#{id}
+    </update>
+    
+    <!-- 认证-->
+    <update id="attestationSuccess" parameterType="Object">
+   		update t_organization set attestation =#{attestation},warranty =#{warranty} where id=#{id}
+    </update>
+    <!--假删除  -->
+    <update id="daleteData" parameterType="int">
+    	update t_organization set `check`=0 where id=#{id}
+    </update>
+
+     <!-- abner 预约次数加1 -->
+    <update id="phoneUpdateOrder">
+    update t_organization
+    <set>
+      <if test="id != null and id != ''">
+        <![CDATA[order_num = order_num + 1]]>
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER} 
+    </update>
+    
+    
+    <update id="updateById" parameterType="Object">
+    	update t_organization set 
+        	coordinate_x = #{coordinateX},
+        	coordinate_y = #{coordinateY}
+        	where id=#{id}
+    </update>
+    
+        <!-- 授权-->
+    <update id="warrantySuccess" parameterType="Object">
+   		update t_organization set warranty =#{warranty} where id=#{id}
+    </update>
+    
+    <select id="findByDetails" parameterType="Object" resultMap="BaseResultMap">
+    	select * from t_organization where login_accounts=#{loginAccounts} and `check` != 0
+    </select>
+    
+      <delete id="delectAllClass" parameterType="Object">
+      delete from t_class where organization_accounts=#{loginAccounts}
+  </delete>
+  <delete id="delectAllCollect" parameterType="Object">
+        delete from t_collect where organization_accounts=#{loginAccounts}
+  </delete>
+    <delete id="delectAllEvaluate" parameterType="Object">
+      	  delete from t_evaluate where organization_accounts=#{loginAccounts}
+  </delete>
+    <delete id="delectAllla" parameterType="Object">
+      	  delete from t_one_push where login_accounts=#{loginAccounts}
+  </delete>
+    <delete id="delectAllpla" parameterType="Object">
+      	  delete from t_one_push where push_login_accounts=#{loginAccounts}
+  </delete>
+    <delete id="delectAllStudentSchool" parameterType="Object">
+      	  delete from t_student_school where organization_accounts=#{loginAccounts}
+  </delete>
+    <delete id="delectAllTeacher" parameterType="Object">
+      	  delete from t_teacher where organization_accounts=#{loginAccounts}
+  </delete>
+</mapper>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.StudentSchoolMapper" >
+  <resultMap id="BaseResultMap" type="com.unionx.wantuo.model.StudentSchool" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="student_id" property="studentId" jdbcType="INTEGER" />
+    <result column="organization_accounts" property="organizationAccounts" jdbcType="VARCHAR" />
+    <result column="begin_date" property="beginDate" jdbcType="VARCHAR" />
+    <result column="end_date" property="endDate" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="school" property="school" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+    <result column="login_accounts" property="loginAccounts" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <!-- abner 保存学员信息 -->
+    <insert id="save" parameterType="com.unionx.wantuo.model.StudentSchool">
+    insert into t_student_school
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null and id !='' ">
+        id,
+      </if>
+      <if test="studentId != null and studentId != '' ">
+        student_id,
+      </if>
+      <if test="name != null and name != '' ">
+        name,
+      </if>
+      <if test="organizationAccounts != null and organizationAccounts != '' ">
+        organization_accounts,
+      </if>
+      <if test="beginDate != null and beginDate !='' ">
+        begin_date,
+      </if>
+      <if test="endDate != null and endDate !='' ">
+        end_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null and id !='' ">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="studentId != null and studentId !='' ">
+        #{studentId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null and name !='' ">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationAccounts != null and organizationAccounts !=''">
+        #{organizationAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="beginDate != null and beginDate !='' ">
+        #{beginDate,jdbcType=VARCHAR},
+      </if>
+      <if test="endDate != null and endDate !='' ">
+        #{endDate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  
+   <!-- abner 手机端获取机构下学员 -->
+	<sql id="Base_Column_List_A">
+		ss.id,ss.student_id,ss.organization_accounts,ss.begin_date,ss.end_date,s.name,s.school as school,s.grade as grade,s.login_accounts
+	</sql>
+    <!-- abner 手机端获取机构下学员  -->
+	<select id="getCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM t_student_school ss 
+		join t_student s on ss.student_id=s.id
+		 where 1=1
+		<if test="organizationAccounts != null and organizationAccounts !=''">
+		  and ss.organization_accounts = #{organizationAccounts}
+		</if>
+		<if test="name != null and name !=''">
+		  and ss.name LIKE CONCAT('%',#{name},'%')
+		</if>
+	</select>
+    <!-- abner 手机端获取机构下学员  -->
+	<select id="queryByList" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List_A" />
+		FROM t_student_school ss
+		join t_student s on ss.student_id=s.id
+		 where 1=1
+		<if test="organizationAccounts != null and organizationAccounts !=''">
+		  and ss.organization_accounts = #{organizationAccounts}
+		</if>
+		<if test="name != null and name !=''">
+		  and ss.name LIKE CONCAT('%',#{name},'%')
+		</if>
+		<if test="limit != null and limit != ''">
+			${limit}
+		</if>
+	</select>
+  
+  
+  <resultMap id="BaseResultMap_S" type="com.unionx.wantuo.model.PhoneStudent" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="school" property="school" jdbcType="VARCHAR" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+    <result column="login_accounts" property="loginAccounts" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="selectOrganizationStudent" resultMap="BaseResultMap_S">
+      select s.id,s.name,s.school,s.grade,s.login_accounts from t_student_school ss
+      join t_student s on ss.student_id=s.id
+       where ss.organization_accounts = #{organizationAccounts}
+       	<if test="name != null and name !=''">
+		  and s.name LIKE CONCAT('%',#{name},'%')
+		</if>
+  </select>
+   <!-- abner 删除学生与机构关系 -->
+  <delete id="phoneDeleteStudentSchool">
+  	delete from t_student_school where student_id=#{studentId} and organization_accounts=#{organizationAccounts}
+  </delete>
+</mapper>

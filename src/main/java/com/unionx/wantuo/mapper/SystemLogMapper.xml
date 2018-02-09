@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.SystemLogMapper" >
+  <resultMap id="BaseResultMap" type="com.unionx.wantuo.model.SystemLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="login_accounts" property="login_accounts" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="create_date" property="create_date" jdbcType="VARCHAR" />
+    <result column="operation_module" property="operation_module" jdbcType="VARCHAR" />
+    <result column="operation_function" property="operation_function" jdbcType="VARCHAR" />
+  </resultMap>
+  
+ 
+  <insert id="save" parameterType="com.unionx.wantuo.model.SystemLog" >
+    insert into system_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !='' ">
+        id,
+      </if>
+      <if test="login_accounts != null and login_accounts !='' " >
+        login_accounts,
+      </if>
+      <if test="name != null and name !='' " >
+        name,
+      </if>
+      <if test="create_date != null and create_date !='' " >
+        create_date,
+      </if>
+      <if test="operation_module != null and operation_module !='' " >
+        operation_module,
+      </if>
+      <if test="operation_function != null and operation_function !='' " >
+        operation_function,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !='' " >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="login_accounts != null and login_accounts !='' " >
+        #{login_accounts,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null and name !='' " >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="create_date != null and create_date !='' " >
+        #{create_date,jdbcType=DATE},
+      </if>
+      <if test="operation_module != null and operation_module !='' " >
+        #{operation_module,jdbcType=VARCHAR},
+      </if>
+      <if test="operation_function != null and operation_function !='' " >
+        #{operation_function,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+
+	
+	<sql id="Base_Column_List">
+		id,login_accounts,name,create_date,operation_module,operation_function
+	</sql>
+	
+	<sql id="Example_Where_Clause">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="login_accounts !=null and login_accounts !='' ">
+				and login_accounts=#{login_accounts,jdbcType=VARCHAR}
+			</if>
+			<if test="signinDateBegin != null and signinDateBegin != ''">
+        <![CDATA[ and create_date >= #{signinDateBegin}]]>
+      </if>
+      <if test="signinDateEnd != null and signinDateEnd != ''">
+        <![CDATA[ and create_date <= #{signinDateEnd}]]>
+      </if>
+		</trim>
+	</sql>
+	<select id="adminFindLog" resultMap="BaseResultMap" parameterType="Object">
+		select 
+		<include refid="Base_Column_List"/>
+		from system_log
+		<include refid="Example_Where_Clause"/>
+			order by create_date desc
+		 limit #{pageIndex},#{pageSize}
+	</select>
+	
+	<select id="adminFindLogCount" parameterType="Object" resultType="java.lang.Integer">
+			select COUNT(0) from system_log
+			<include refid="Example_Where_Clause"/>
+	</select>
+</mapper>

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.unionx.wantuo.dao.ClassMapper" >
+  <resultMap id="BaseResultMap" type="com.unionx.wantuo.model.ClassModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="organization_accounts" property="organizationAccounts" jdbcType="VARCHAR" />
+    <result column="organization_class" property="organizationClass" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="VARCHAR" />
+    <result column="subject" property="subject" jdbcType="VARCHAR" />
+    <result column="student" property="student" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="status_name" property="statusName" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+  </resultMap>
+  
+    <insert id="save">
+    insert into t_class
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !='' " >
+        id,
+      </if>
+      <if test="organizationAccounts != null and organizationAccounts !='' " >
+        organization_accounts,
+      </if>
+      <if test="organizationClass != null and organizationClass !='' " >
+        organization_class,
+      </if>
+      <if test="createDate != null and createDate !='' " >
+        create_date,
+      </if>
+      <if test="subject != null and subject !='' " >
+        subject,
+      </if>
+      <if test="student != null and student !='' " >
+        student,
+      </if>
+      <if test="status != null and status !='' " >
+        status,
+      </if>
+      <if test="statusName != null and statusName !='' " >
+        status_name,
+      </if>
+      <if test="num != null and num !='' " >
+        num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null and id !='' " >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="organizationAccounts != null and organizationAccounts != '' " >
+        #{organizationAccounts,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationClass != null and organizationClass != '' " >
+        #{organizationClass,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null and createDate !='' " >
+        #{createDate,jdbcType=DATE},
+      </if>
+      <if test="subject != null and subject !='' " >
+        #{subject,jdbcType=VARCHAR},
+      </if>
+      <if test="student != null and student !='' " >
+        #{student,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null and status !='' " >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="statusName != null and statusName !='' " >
+        #{statusName,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null and num !='' " >
+        #{num,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  
+
+	<sql id="Example_Where_Clause_A">
+		where 1=1
+		<trim suffixOverrides=",">
+			<if test="organizationAccounts != null and organizationAccounts != ''">
+				and organization_accounts =#{organizationAccounts}
+			</if>
+			<if test="organizationClass != null and organizationClass != ''">
+			    and organization_class LIKE CONCAT('%',#{organizationClass},'%')
+			</if>
+			<if test="status != null and status != ''">
+				and status = #{status}
+			</if>
+		</trim>
+	</sql>
+
+	<sql id="Base_Column_List_A">
+		id,organization_accounts,organization_class,create_date,subject,student,status,status_name,num
+	</sql>
+
+	<select id="getCount" resultType="java.lang.Integer">
+		SELECT COUNT(1) FROM t_class
+		<include refid="Example_Where_Clause_A" />
+	</select>
+
+	<select id="queryByList" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List_A" />
+		FROM t_class
+		<include refid="Example_Where_Clause_A" />
+		<if test="limit != null and limit != ''">
+			${limit}
+		</if>
+	</select>
+	
+	<update id="update">
+    update t_class
+    <set>
+      <if test="status != null and status != ''">
+      status=#{status,jdbcType=INTEGER}
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER} 
+    </update>
+	
+	<update id="updateNum">
+	update t_class 
+	<set>
+      <if test="i != null and i != ''">
+        <![CDATA[num = num + #{i,jdbcType=INTEGER}]]>
+      </if>
+    </set>
+    where id = #{classId,jdbcType=INTEGER} 
+	</update>
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd   
+    http://www.springframework.org/schema/util 
+    http://www.springframework.org/schema/util/spring-util-3.0.xsd">
+	<description>Shiro 配置</description>
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/login.jsp" />
+		<property name="successUrl" value="/login.jsp" />
+		<property name="unauthorizedUrl" value="/error/noperms.jsp" />
+		<property name="filterChainDefinitions">
+			<value>
+			/manage/* = anon
+				
+			</value>
+		</property><!-- roles[user] -->
+	</bean>
+
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<!--设置自定义realm -->
+		<property name="realm" ref="unionxShiroRealm" />
+		<property name="cacheManager" ref="shiroEhcacheManager" />
+	</bean>
+
+	<!--自定义Realm 继承自AuthorizingRealm -->
+	<bean id="unionxShiroRealm" class="com.unionx.shiro.ShiroDbRealm">
+		<property name="userService" ref="userService"/>
+		<property name="tmemberArchivesService" ref="tmemberArchivesService"/>
+		<property name="userArchiveService" ref="userArchiveService"/>
+		<property name="storeUserArchiveService" ref="storeUserArchiveService"/>
+		
+	</bean>
+
+
+	<!-- Enable Shiro Annotations for Spring-configured beans. Only run after -->
+	<!-- the lifecycleBeanProcessor has run: -->
+	<bean
+		class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+		depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+
+	<bean
+		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+
+	<bean id="shiroEhcacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+		<property name="cacheManagerConfigFile">
+			<value>classpath:ehcache-shiro.xml</value>
+		</property>
+	</bean>
+
+</beans>
